@@ -31,11 +31,11 @@ Filipa Senra, Tiago Miller, Gustavo Magalhães, José Martins.
 **FOR HELP: https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md#Product-Vision**
 
 ## Product Vision
-For the conference attendees who want to have their own custom agenda, Agendapp is an agenda app that offers the user the opportunity to create their own schedule based on their own interests. Our product lets the user choose only the lectures that interest him, sending him notifications when the talk is about to start and also reccomends others based on his previous choices. With an user friendly interface and all the details the user needs to make the best possible schedule suited to him, Agendapp is definitely the agenda app you need.
+At Agendapp our vision is to help conference attendees better manage the lectures they want to take part in. Agendapp is an agenda/schedule type application that offers the user the opportunity to create their own personal schedule based on their own interests, helping them create the perfect programme for their needs. Unlike the old way of checking a conference programme, our app gives the user the opportunity to focus only on the lectures he wants as well as sending him notifications when the talk is about to start and the ability of checking each lecture info on the go.
 
 ---
 ## Elevator Pitch
-TO DO
+For the conference attendees who want to have their own custom agenda, Agendapp is an agenda app that offers the user the opportunity to create their own schedule based on their own interests. Our product lets the user choose only the lectures that interest him, sending him notifications when the talk is about to start and also recommending others based on his previous choices. With an user friendly interface and all the details the user needs to make the best possible schedule suited to him, Agendapp is definitely the agenda app you need.
 
 ---
 ## Requirements
