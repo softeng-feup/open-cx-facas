@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -126,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
         //Use`Navigator` widget to push the second screen to out stack of screens
         Navigator.of(context)
             .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-          return new LoginPage();
+          return new MyHomePage();
         }));
       },
       child: Container(
