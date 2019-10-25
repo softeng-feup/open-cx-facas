@@ -48,18 +48,7 @@ TO DO: CHECK IF IT CORRECT AND ADD THE DESCRIPTIONS, ETC.
 
 ### User stories
 
-TO DO: INCOMPLETE 
-
-As an attendee of a conference, I want to be able to see every talk and its informations so I can decide which talks to attend. 
-
-As a user of this app, I want to be able to create, edit and see my personalize schedule so I can better organize my time during the conference. 
-
-As an attendee of a talk, I want to be notified when a talk I intend to go is about to start so that I don't get to be late. I also want to be notified if there are any changes relative to a talk I want to attend.
-
-As an attendee of a conference, I want to be given suggestions of talks I should attend based on my interests and my schedule so I can take the most from the conference. 
-
-As an attendee of a talk, I want to be able to give my feedback in order to improve future talks.
-
+https://www.youtube.com/watch?v=jwK9dbfwTUA
 
 **User interface mockups**.
 TO DO
