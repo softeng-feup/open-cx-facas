@@ -39,7 +39,7 @@ void _onItemTapped(int index) {
       _isVisible = true;
     }
     else if(index == 1){
-      texto = "Tasks";
+      texto = "All Talks";
       _isVisible = false;
     }
     else if (index == 2){
