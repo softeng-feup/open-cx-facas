@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_login_page/Screens/AllTalks.dart';
 import 'package:flutter_login_page/Screens/home.dart';
 
 import 'package:flutter_login_page/Model/Talk.dart';
 
 final List<Talk> _talkList = [
-    new Talk("08:00", "09:00", "Have coffe with Sam", "Personal", true),
+    new Talk("08:00", "09:00", "Have coffe with Sam", "Personal", false),
     new Talk("10:00", "11:00", "Meet with sales", "Work", true),
     new Talk("12:00", "13:00", "Call Tom about appointment", "Work", true),
     new Talk("14:00", "15:00", "Fix onboarding experience", "Work", true),
@@ -36,7 +37,7 @@ void _onItemTapped(int index) {
 
 final List<Widget> _children = [
   MyHomePage(talkList: _talkList),
-  MyHomePage(talkList: _talkList),
+  MyAllTalksPage(talkList: _talkList),
   MyHomePage(talkList: _talkList),
 ];
 

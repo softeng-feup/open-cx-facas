@@ -122,16 +122,14 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  
-
   Widget buildButtonContainer() {
     return GestureDetector(
       onTap: () {
-                    Navigator.of(context)
-                      .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-                        return new MenuPage();
-                      }));
-                  },
+        Navigator.of(context)
+            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return new MenuPage();
+        }));
+      },
       child: Container(
         height: 56.0,
         width: MediaQuery.of(context).size.width,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Components/MenuOpen.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
+import 'package:flutter_login_page/Screens/list_all_talks.dart';
 
 import 'list_talks.dart';
 
@@ -22,7 +23,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 60),
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Text(
