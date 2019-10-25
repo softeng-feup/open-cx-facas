@@ -9,8 +9,8 @@ final List<Talk> _talkList = [
     new Talk("08:00", "09:00", "Have coffe with Sam", "Personal", false),
     new Talk("10:00", "11:00", "Meet with sales", "Work", true),
     new Talk("12:00", "13:00", "Call Tom about appointment", "Work", true),
-    new Talk("14:00", "15:00", "Fix onboarding experience", "Work", true),
-    new Talk("16:00", "16:00", "Edit API documentation", "Personal", true),
+    new Talk("14:00", "15:00", "Fix onboarding experience", "Work", false),
+    new Talk("16:00", "16:00", "Edit API documentation", "Personal", false),
     new Talk("18:00", "17:00", "Setup user focus group", "Personal", true),
   ];
 
@@ -28,10 +28,17 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
 
 int _selectedIndex = 0;
+String texto = "Schedule";
 
 void _onItemTapped(int index) {
   setState(() {
     _selectedIndex = index;
+    if(index == 0)
+      texto = "Schedule";
+    else if(index == 1)
+      texto = "Tasks";
+    else if (index == 2)
+      texto = "Account";
   });
 }
 
@@ -49,7 +56,7 @@ Icon sheduleIcon = new Icon (Icons.calendar_today);
       appBar: AppBar(
         automaticallyImplyLeading: false,
           title: Text(
-          "Schedule",
+          texto,
           style: TextStyle(
             color: Color(0xFFFFFFFF),
             fontSize: 24,
