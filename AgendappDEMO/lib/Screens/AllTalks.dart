@@ -22,11 +22,10 @@ class _MyAllTalksPageState extends State<MyAllTalksPage> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 60),
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Text(
-                "All Talks",
+                "Monday",
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
             ),
