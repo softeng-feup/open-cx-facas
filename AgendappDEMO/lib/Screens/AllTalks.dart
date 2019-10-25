@@ -23,10 +23,10 @@ class _MyAllTalksPageState extends State<MyAllTalksPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(17.0),
               child: Text(
                 "Monday",
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Expanded(
