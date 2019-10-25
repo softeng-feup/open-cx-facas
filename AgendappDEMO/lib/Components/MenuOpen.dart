@@ -2,404 +2,118 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Screens/home.dart';
 
-import '../menu.dart';
+import 'package:flutter_login_page/Model/Talk.dart';
 
-Widget MenuOpen(BuildContext context) {
-  double textHeight = 38;
-  double gapHeight = 28;
+final List<Talk> _talkList = [
+    new Talk("08:00", "09:00", "Have coffe with Sam", "Personal", true),
+    new Talk("10:00", "11:00", "Meet with sales", "Work", true),
+    new Talk("12:00", "13:00", "Call Tom about appointment", "Work", true),
+    new Talk("14:00", "15:00", "Fix onboarding experience", "Work", true),
+    new Talk("16:00", "16:00", "Edit API documentation", "Personal", true),
+    new Talk("18:00", "17:00", "Setup user focus group", "Personal", true),
+  ];
 
-  return Scaffold(
-      body: Container(
-          child: Center(
-              child: Stack(
-                children: [
-                  Positioned( //Barra de cima
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xFF28316C),
-                      ),
-                      // padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                      height: 72,
-                      width: MediaQuery.of(context).size.width,
-                    ),
-                    top: 0,
-                  ),
-                  Positioned( //Contentor grande
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xFF28316C),
-                      ),
-                      // padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                      height: 432,
-                      width: MediaQuery.of(context).size.width,
-                    ),
-                    top: 72,
-                  ),
 
-                  Positioned(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-                            return new MyHomePage();
-                          }));
-                        },
-                        child: Container(
-                          child: Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                            size: 40.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF28316C),
-                          ),
-                          height: textHeight,
-                          width: 40,
-                        ),
-                      ),
-                      top: 29,
-                      right: 15
-                  ),
+class MenuPage extends StatefulWidget {
+  MenuPage({Key key, this.title}) : super(key: key);
 
-                  Positioned(
-                      child: Container(
-                        child: Text(
-                          'Schedule',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFFFFFFF),
-                              fontSize: 20
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF28316C),
-                        ),
-                        padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                        height: textHeight,
-                        width: MediaQuery.of(context).size.width,
-                      ),
-                      top: 72,
-                      left: 13,
-                      right: 13
-                  ),
+  final String title;
 
-                  Positioned(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-                            return new MyHomePage();
-                          }));
-                        },
-                        child: Container(
-                          child: Text(
-                            'View',
-                            style: TextStyle(
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 20
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF28316C),
-                          ),
-                          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                          height: textHeight,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                      ),
-                      top: 72 + textHeight,
-                      left: 13,
-                      right: 13
-                  ),
+  @override
+  _MenuPageState createState() => _MenuPageState();
+}
 
-                  Positioned(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-                            return new MenuPage();
-                          }));
-                        },
-                        child: Container(
-                          child: Text(
-                            'All Lectures',
-                            style: TextStyle(
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 20
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF28316C),
-                          ),
-                          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                          height: textHeight,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                      ),
-                      top: 72 + 2*textHeight,
-                      left: 13,
-                      right: 13
-                  ),
 
-                  Positioned(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-                            return new MenuPage();
-                          }));
-                        },
-                        child: Container(
-                          child: Text(
-                            'Recommended Lectures',
-                            style: TextStyle(
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 20
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF28316C),
-                          ),
-                          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                          height: textHeight,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                      ),
-                      top: 72 + 3*textHeight,
-                      left: 13,
-                      right: 13
-                  ),
+class _MenuPageState extends State<MenuPage> {
 
-                  Positioned( //Divisao
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xA0FFFFFF),
-                        ),
-                        // padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                        height: 1.5,
-                        width: MediaQuery.of(context).size.width,
-                      ),
-                      top: 72 + 4*textHeight + gapHeight/2,
-                      left: 13,
-                      right: 13
-                  ),
+int _selectedIndex = 0;
 
-                  Positioned(
-                      child: Container(
-                        child: Text(
-                          'Account',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFFFFFFF),
-                              fontSize: 20
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF28316C),
-                        ),
-                        padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                        height: textHeight,
-                        width: MediaQuery.of(context).size.width,
-                      ),
-                      top: 72 + 4*textHeight + gapHeight,
-                      left: 13,
-                      right: 13
-                  ),
+void _onItemTapped(int index) {
+  setState(() {
+    _selectedIndex = index;
+  });
+}
 
-                  Positioned(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-                            return new MenuPage();
-                          }));
-                        },
-                        child: Container(
-                          child: Text(
-                            'Profile',
-                            style: TextStyle(
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 20
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF28316C),
-                          ),
-                          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                          height: textHeight,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                      ),
-                      top: 72 + 5*textHeight + gapHeight,
-                      left: 13,
-                      right: 13
-                  ),
+final List<Widget> _children = [
+  MyHomePage(talkList: _talkList),
+  MyHomePage(talkList: _talkList),
+  MyHomePage(talkList: _talkList),
+];
 
-                  Positioned(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-                            return new MenuPage();
-                          }));
-                        },
-                        child: Container(
-                          child: Text(
-                            'Edit Preferences',
-                            style: TextStyle(
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 20
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF28316C),
-                          ),
-                          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                          height: textHeight,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                      ),
-                      top: 72 + 6*textHeight + gapHeight,
-                      left: 13,
-                      right: 13
-                  ),
+Icon sheduleIcon = new Icon (Icons.calendar_today);
 
-                  Positioned( //Divisao
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xA0FFFFFF),
-                        ),
-                        // padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                        height: 1.5,
-                        width: MediaQuery.of(context).size.width,
-                      ),
-                      top: 72 + 7*textHeight + gapHeight + gapHeight/2,
-                      left: 13,
-                      right: 13
-                  ),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Text(
+          "Schedule",
+          style: TextStyle(
+            color: Color(0xFFFFFFFF),
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+          ),
+        ),
+        backgroundColor: Color(0xFF28316C),  
+      ),
 
-                  Positioned(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-                            return new MenuPage();
-                          }));
-                        },
-                        child: Container(
-                          child: Stack (
-                            children: [
-                              Container(
-                                child: Text(
-                                  'Settings',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFFFFFFFF),
-                                      fontSize: 20
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                                padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                              ),
+      body: _children[_selectedIndex],
 
-                              Positioned(
-                                  child: Icon(
-                                    Icons.settings,
-                                    color: Colors.white,
-                                    size: 40.0,
-                                  ),
-                                  top: -1,
-                                  right: 0
-                              ),
-                            ],
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF28316C),
-                          ),
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          height: textHeight,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                      ),
-                      top: 72 + 7*textHeight + 2*gapHeight,
-                      left: 13,
-                      right: 13
-                  ),
+      floatingActionButton: Container(
+        height: 50,
+        child: FloatingActionButton(
+            child: IconButton(
+              icon: sheduleIcon,
+              onPressed: () {
+                setState((){
+                  if(this.sheduleIcon.icon == Icons.format_list_bulleted)
+                    this.sheduleIcon = new Icon(Icons.calendar_today);
+                  else
+                    this.sheduleIcon = new Icon(Icons.format_list_bulleted);
+                }); 
+              },
+            ),
+            onPressed: () {
+              null;
+            },       
+        ),  
+        ),
+        
 
-                  Positioned( //Divisao
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xA0FFFFFF),
-                        ),
-                        // padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                        height: 1.5,
-                        width: MediaQuery.of(context).size.width,
-                      ),
-                      top: 72 + 8*textHeight + 2*gapHeight + gapHeight/2,
-                      left: 13,
-                      right: 13
-                  ),
-
-                  Positioned(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-                            return new MenuPage();
-                          }));
-                        },
-                        child: Container(
-                          child: Stack (
-                            children: [
-                              Container(
-                                child: Text(
-                                  'Signt Out',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFFFFFFFF),
-                                      fontSize: 20
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                                padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                              ),
-
-                              Positioned(
-                                  child: Icon(
-                                    Icons.exit_to_app,
-                                    color: Colors.white,
-                                    size: 40.0,
-                                  ),
-                                  top: -5,
-                                  right: 0
-                              ),
-                            ],
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF28316C), // 0xFF28316C
-                          ),
-
-                          padding: EdgeInsets.fromLTRB(0, 6, 0, 0),
-                          height: 40,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                      ),
-
-                      top: 68 + 8*textHeight + 3*gapHeight,
-                      left: 13,
-                      right: 13
-                  ),
-
-                ],
-              )
-          )
-      )
-  );
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: Colors.yellow,
+            icon: Icon(Icons.access_time),
+            title: Text(
+              'Schedule',
+            ),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+            icon: Icon(Icons.content_copy),
+            title: Text(
+              'All talks',
+            ),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.black,
+            icon: Icon(Icons.account_circle),
+            title: Text(
+              'Account',
+            ),
+          ),
+        ],
+      currentIndex: _selectedIndex,
+      unselectedItemColor: Color(0xFF28316C),
+      selectedItemColor: Color(0xFF28316C),
+      selectedIconTheme: IconThemeData(size: 38, color: Color(0xFF28316C)),
+      unselectedIconTheme: IconThemeData(size: 25, color: Color(0x9F28316C)),
+      onTap: _onItemTapped,
+    ),
+    );
+  }
 }

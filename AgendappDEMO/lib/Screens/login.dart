@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_page/Model/Talk.dart';
 
-import 'home.dart';
+import '../Components/MenuOpen.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -123,23 +122,16 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  final List<Talk> _talkList = [
-    new Talk("08:00", "09:00", "Have coffe with Sam", "Personal", true),
-    new Talk("10:00", "11:00", "Meet with sales", "Work", true),
-    new Talk("12:00", "13:00", "Call Tom about appointment", "Work", true),
-    new Talk("14:00", "15:00", "Fix onboarding experience", "Work", true),
-    new Talk("16:00", "16:00", "Edit API documentation", "Personal", true),
-    new Talk("18:00", "17:00", "Setup user focus group", "Personal", true),
-  ];
+  
 
   Widget buildButtonContainer() {
     return GestureDetector(
       onTap: () {
-        //Use`Navigator` widget to push the second screen to out stack of screens
-        Navigator.of(context)
-            .push(MaterialPageRoute<Null>(builder: (context) => MyHomePage(talkList: _talkList)
-        ));
-      },
+                    Navigator.of(context)
+                      .push(MaterialPageRoute<Null>(builder: (BuildContext context){
+                        return new MenuPage();
+                      }));
+                  },
       child: Container(
         height: 56.0,
         width: MediaQuery.of(context).size.width,
