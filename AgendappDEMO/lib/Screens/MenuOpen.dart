@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_login_page/Screens/AllTalks.dart';
-import 'package:flutter_login_page/Screens/home.dart';
-
 import 'package:flutter_login_page/Model/Talk.dart';
+import 'package:flutter_login_page/Screens/Account_Screen/Account_Screen.dart';
+import 'package:flutter_login_page/Screens/All_Talks_Screen/AllTalks.dart';
+import 'package:flutter_login_page/Screens/Schedule_List_Screen/home.dart';
 
 final List<Talk> _talkList = [
     new Talk("08:00", "09:00", "Have coffe with Sam", "Personal", false),
@@ -38,7 +38,7 @@ void _onItemTapped(int index) {
 final List<Widget> _children = [
   MyHomePage(talkList: _talkList),
   MyAllTalksPage(talkList: _talkList),
-  MyHomePage(talkList: _talkList),
+  MyAccountPage(),
 ];
 
 Icon sheduleIcon = new Icon (Icons.calendar_today);

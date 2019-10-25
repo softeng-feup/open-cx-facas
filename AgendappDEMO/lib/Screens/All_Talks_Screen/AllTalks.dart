@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
 
 import 'list_all_talks.dart';
-import 'list_talks.dart';
 
 class MyAllTalksPage extends StatefulWidget {
   final List<Talk> talkList;
