@@ -52,13 +52,13 @@ User storie map can be accesed here:
 https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories
 
 **User interface mockups**.
-TO DO
+In trello link above (check the Description).
 
 **Acceptance tests**.
-TO DO
+In trello link above (check the Description).
 
 **Value and effort**.
-TO DO
+In trello link above (check the tags).
 
 ### Domain model
 
@@ -76,9 +76,14 @@ TO DO
 TO DO
 
 ### Prototype
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+We have implemented a vertical prototype, a thin slice of the system. The flowing user stories are present in our prototype:
+
+1. As a conference atendee, I want to be presented with all talks available so that I can add them to my personal schedule.
+2. As a conference atendee, I want to be able to edit my schedule so I can change my mind.
+3. As a conference atendee, I want to be presented with all talks available so that I can remove a talk I previously added to my schedule
+4. As a user, I want to be able to login into the app so that I can get all my personal data saved and accessible trough any device.
+
 
 ---
 
