@@ -47,8 +47,8 @@ Icon sheduleIcon = new Icon (Icons.calendar_today);
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
+        automaticallyImplyLeading: false,
+          title: Text(
           "Schedule",
           style: TextStyle(
             color: Color(0xFFFFFFFF),
@@ -57,7 +57,6 @@ Icon sheduleIcon = new Icon (Icons.calendar_today);
           ),
           textAlign: TextAlign.center,
           ),
-        ),
         backgroundColor: Color(0xFF28316C),  
       ),
 
