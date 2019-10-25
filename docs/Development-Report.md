@@ -48,7 +48,8 @@ TO DO: CHECK IF IT CORRECT AND ADD THE DESCRIPTIONS, ETC.
 
 ### User stories
 
-https://www.youtube.com/watch?v=jwK9dbfwTUA
+User storie map can be accesed here:
+https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories
 
 **User interface mockups**.
 TO DO
