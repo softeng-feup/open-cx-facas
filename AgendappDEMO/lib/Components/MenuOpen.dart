@@ -29,16 +29,23 @@ class _MenuPageState extends State<MenuPage> {
 
 int _selectedIndex = 0;
 String texto = "Schedule";
+bool _isVisible = true;
 
 void _onItemTapped(int index) {
   setState(() {
     _selectedIndex = index;
-    if(index == 0)
+    if(index == 0){
       texto = "Schedule";
-    else if(index == 1)
+      _isVisible = true;
+    }
+    else if(index == 1){
       texto = "Tasks";
-    else if (index == 2)
+      _isVisible = false;
+    }
+    else if (index == 2){
       texto = "Account";
+      _isVisible = false;
+    }
   });
 }
 
@@ -69,25 +76,28 @@ Icon sheduleIcon = new Icon (Icons.calendar_today);
 
       body: _children[_selectedIndex],
 
-      floatingActionButton: Container(
-        height: 50,
-        child: FloatingActionButton(
-            child: IconButton(
-              icon: sheduleIcon,
+      floatingActionButton: Visibility(
+        visible: _isVisible,
+        child: Container(
+          height: 50,
+          child: FloatingActionButton(
+              child: IconButton(
+                icon: sheduleIcon,
+                onPressed: () {
+                  setState((){
+                    if(this.sheduleIcon.icon == Icons.format_list_bulleted)
+                      this.sheduleIcon = new Icon(Icons.calendar_today);
+                    else
+                      this.sheduleIcon = new Icon(Icons.format_list_bulleted);
+                  }); 
+                },
+              ),
               onPressed: () {
-                setState((){
-                  if(this.sheduleIcon.icon == Icons.format_list_bulleted)
-                    this.sheduleIcon = new Icon(Icons.calendar_today);
-                  else
-                    this.sheduleIcon = new Icon(Icons.format_list_bulleted);
-                }); 
-              },
-            ),
-            onPressed: () {
-              null;
-            },       
-        ),  
+                null;
+              },       
+          ),  
         ),
+      ),
         
 
       bottomNavigationBar: BottomNavigationBar(
