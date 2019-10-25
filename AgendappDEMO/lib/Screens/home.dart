@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login_page/Components/MenuOpen.dart';
+import 'package:flutter_login_page/Model/Talk.dart';
 
 import 'list_talks.dart';
 
 class MyHomePage extends StatefulWidget {
+  final List<Talk> talkList;
+
+  const MyHomePage({Key key, this.talkList}): super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -25,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Expanded(
-            child: EventPage(),
+            child: TalkPage(talkList: widget.talkList),
           )
         ],
       )
