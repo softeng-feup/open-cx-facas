@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Screens/Account_Screen/Account_Screen.dart';
+import 'package:flutter_login_page/Screens/Schedule_Screen/schedule_screen.dart';
 import 'package:flutter_login_page/Screens/All_Talks_Screen/AllTalks.dart';
 import 'package:flutter_login_page/Screens/Schedule_List_Screen/home.dart';
 
@@ -27,11 +28,14 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
 
-int _selectedIndex = 0;
+int _selectedIndex = 1;
+int _selectedPageIndex = 1;
 String texto = "Schedule";
-bool _isVisible = true;
+bool _isVisible = false;
+bool _isCalendar;
 
 void _onItemTapped(int index) {
+
   setState(() {
     _selectedIndex = index;
     if(index == 0){
@@ -46,6 +50,9 @@ void _onItemTapped(int index) {
       texto = "Account";
       _isVisible = false;
     }
+    this.sheduleIcon = new Icon(Icons.calendar_today);
+    _isCalendar = false;
+    _selectedPageIndex = _selectedIndex;
   });
 }
 
@@ -53,6 +60,7 @@ final List<Widget> _children = [
   MyHomePage(talkList: _talkList),
   MyAllTalksPage(talkList: _talkList),
   MyAccountPage(),
+  MySchedulePage(),
 ];
 
 Icon sheduleIcon = new Icon (Icons.calendar_today);
@@ -74,7 +82,7 @@ Icon sheduleIcon = new Icon (Icons.calendar_today);
         backgroundColor: Color(0xFF28316C),  
       ),
 
-      body: _children[_selectedIndex],
+      body:_children[_selectedPageIndex],
 
       floatingActionButton: Visibility(
         visible: _isVisible,
@@ -85,10 +93,16 @@ Icon sheduleIcon = new Icon (Icons.calendar_today);
                 icon: sheduleIcon,
                 onPressed: () {
                   setState((){
-                    if(this.sheduleIcon.icon == Icons.format_list_bulleted)
+                    if(_isCalendar){
                       this.sheduleIcon = new Icon(Icons.calendar_today);
-                    else
+                      _selectedPageIndex = 0;
+                      _isCalendar = false;
+                    }
+                    else{
                       this.sheduleIcon = new Icon(Icons.format_list_bulleted);
+                      _selectedPageIndex = 3;
+                      _isCalendar = true;
+                    }
                   }); 
                 },
               ),
