@@ -1,11 +1,12 @@
+import 'dart:ui';
+
 class Talk {
-  final String initialTime;
-  final String finalTime;
-  final String task;
-  final String desc;
+  DateTime dateInitial;
+  DateTime dateFinal;
+  String name;
+  String information;
+  Color color;
   bool selected;
 
-  Talk(this.initialTime, this.finalTime, this.task, this.desc, bool selected) {
-    this.selected = selected;
-  }
+  Talk(this.dateInitial, this.dateFinal, this.name, this.information, this.color, this.selected);
 }

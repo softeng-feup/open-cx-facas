@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Components/displayTime.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Components/displayContent.dart';
+import 'package:intl/intl.dart';
 
 class AllTalkPage extends StatefulWidget {
   final List<Talk> talkList;
@@ -27,8 +28,8 @@ class _AllTalkPageState extends State<AllTalkPage> {
           child: Row(
             children: <Widget>[
               displayTime(
-                  widget.talkList[index].initialTime,
-                  widget.talkList[index].finalTime),
+                  new DateFormat("HH:mm").format(widget.talkList[index].dateInitial),
+                  new DateFormat("HH:mm").format(widget.talkList[index].dateFinal)),
               lineStyle(
                   context, iconSize, widget.talkList.length,
                   widget.talkList[index]),
