@@ -16,8 +16,10 @@ class TalkPage extends StatefulWidget {
 class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
 
   List<Tab> myTabs = <Tab>[];
+  Map<String, List<Talk>> myTalksPerDay = new Map();
 
   TabController _tabController;
+
 
   bool hasDateMatch(DateTime dateToLookFor, List<DateTime> myDates){
 
@@ -33,16 +35,28 @@ class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
+
+    List<Talk> selectedTalks = new List<Talk>();
+
+    for(Talk talk in widget.talkList){
+      if(talk.selected)
+        selectedTalks.add(talk);
+    }
+
     List<DateTime> myDates = new List();
 
-    for(int i = 0; i < widget.talkList.length; i++){
+    for(int i = 0; i < selectedTalks.length; i++){
 
-      if(!hasDateMatch(widget.talkList[i].dateInitial, myDates)){
+      if(!hasDateMatch(selectedTalks[i].dateInitial, myDates)){
 
-        myDates.add(widget.talkList[i].dateInitial);
+        myDates.add(selectedTalks[i].dateInitial);
 
-        String newDate = new DateFormat("dd MM").format(widget.talkList[i].dateInitial);
+        String newDate = new DateFormat("dd MMM").format(selectedTalks[i].dateInitial);
         myTabs.add(Tab(text: newDate));
+
+
+        var listOfTalks = selectedTalks.where((talk) => (talk.dateInitial.day == selectedTalks[i].dateInitial.day && talk.dateInitial.month == selectedTalks[i].dateInitial.month ));
+        myTalksPerDay[newDate] = listOfTalks.toList();
       }
 
     }
@@ -60,13 +74,6 @@ class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     double iconSize = 20;
 
-    List<Talk> selectedTalks = new List<Talk>();
-
-    for(Talk talk in widget.talkList){
-      if(talk.selected)
-        selectedTalks.add(talk);
-    }
-
     return Scaffold(
       appBar: TabBar(
         indicatorColor: Color(0xFF28316C),
@@ -78,7 +85,7 @@ class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
         controller: _tabController,
         children: myTabs.map((Tab tab) {
 
-          var listOfDay = selectedTalks.where((talk) => (talk.dateInitial.day == int.parse(tab.text.substring(0, 2)) && talk.dateInitial.month == int.parse(tab.text.substring(3, 5)) ));
+          List<Talk> listOfDay = myTalksPerDay[tab.text];
 
           return ListView.builder(
             itemCount: listOfDay.length,
