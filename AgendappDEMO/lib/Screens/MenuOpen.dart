@@ -27,8 +27,7 @@ class MenuPage extends StatefulWidget {
 
 
 class _MenuPageState extends State<MenuPage> {
-
-int _selectedIndex = 1;
+  int _selectedIndex = 1;
 int _selectedPageIndex = 1;
 String texto = "Schedule";
 bool _isVisible = false;
