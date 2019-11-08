@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "201377721231",
+    "firebase_url": "https://agendapp-eebac.firebaseio.com",
+    "project_id": "agendapp-eebac",
+    "storage_bucket": "agendapp-eebac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201377721231:android:d5b63674d0a5a3a7ba39fa",
+        "android_client_info": {
+          "package_name": "com.example.flutter_login_page"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201377721231-nsi6488d65h8fosk82omup7qluq2es7p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_login_page",
+            "certificate_hash": "aa5f4bc3b72e5e12f7e90d9ffdb5738a88ed5a90"
+          }
+        },
+        {
+          "client_id": "201377721231-d1rhmu62vfkehplf05rd9cnt8dhclsam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_WswLYq_Y4eGOfoX4sGKBpDSfUwE9jgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201377721231-d1rhmu62vfkehplf05rd9cnt8dhclsam.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
