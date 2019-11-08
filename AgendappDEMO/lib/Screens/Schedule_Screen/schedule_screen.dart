@@ -38,6 +38,23 @@ final List<String> timeInterval = [
   "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM"
   ];
 
+int firstBlock;
+int finalBlock;
+int numBlocks;
+
+// Usado para facilitar a colocaçao dos blocos na tabela
+void convertToBlocks(String initTime, String finalTime){
+  int initTimeHourInt = int.parse(initTime.substring(0,2));
+  int initTimeMinutesInt = int.parse(initTime.substring(3,5));
+  int finalTimeHourInt = int.parse(finalTime.substring(0,2));
+  int finalTimeMinutesInt = int.parse(finalTime.substring(3,5));
+
+  firstBlock = ((initTimeHourInt-8)*2 + (initTimeMinutesInt)/30).round();
+  finalBlock = ((finalTimeHourInt-8)*2 + (finalTimeMinutesInt)/30).round();
+  numBlocks = finalBlock - firstBlock;
+  print(numBlocks);
+}
+
 Container placeBlocks(int i){
   return Container(
             color: Colors.red,
@@ -47,6 +64,7 @@ Container placeBlocks(int i){
 }
 
 Container displayTime(int i){
+  convertToBlocks("09:30", "11:30");
   return Container(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.end,
