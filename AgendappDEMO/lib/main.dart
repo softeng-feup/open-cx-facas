@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_page/menu.dart';
 import 'Screens/login.dart';
 
 void main() => runApp(App());
