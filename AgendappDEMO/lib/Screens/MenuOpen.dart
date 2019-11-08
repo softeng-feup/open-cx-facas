@@ -12,7 +12,7 @@ final List<Talk> _talkList = [
   new Talk(new DateTime(2019, 12, 8, 14, 0), new DateTime(2019, 12, 8, 15, 0), "Fix onboarding experience", "Work", Color(0xFF008000), false),
   new Talk(new DateTime(2019, 12, 8, 16, 0), new DateTime(2019, 12, 8, 17, 0), "Edit API documentation", "Personal", Color(0xFFFFFF00), false),
 
-  new Talk(new DateTime(2019, 12, 10, 9, 0), new DateTime(2019, 12, 10, 10, 0), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFFFFFF00), false),
+  new Talk(new DateTime(2019, 12, 10, 9, 0), new DateTime(2019, 12, 10, 10, 0), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFFFFFF00), true),
   new Talk(new DateTime(2019, 12, 10, 16, 0), new DateTime(2019, 12, 10, 17, 30), "Edit API documentation", "Personal", Color(0xFFFF0000), false),
 ];
 

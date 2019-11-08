@@ -100,10 +100,6 @@ class MySchedulePageState extends State<MySchedulePage> {
 
 // Usado para facilitar a colocaçao dos blocos na tabela
   void convertToBlocks(DateTime initTime, DateTime finalTime){
-    // int initTimeHourInt = int.parse(initTime.substring(0,2));
-    // int initTimeMinutesInt = int.parse(initTime.substring(3,5));
-    // int finalTimeHourInt = int.parse(finalTime.substring(0,2));
-    // int finalTimeMinutesInt = int.parse(finalTime.substring(3,5));
 
     firstBlock = ((initTime.hour-8)*2 + (initTime.minute)/30).round();
     finalBlock = ((finalTime.hour-8)*2 + (finalTime.minute)/30).round();
@@ -199,8 +195,9 @@ class MySchedulePageState extends State<MySchedulePage> {
             height: MediaQuery.of(context).size.width * (1/(daysList.length + 1)),
             width: MediaQuery.of(context).size.width,
           ),
+
           for(int j = 0; j < widget.talkList.length; j++)
-            if(daysList[i].day == widget.talkList[j].dateInitial.day)
+            if(daysList[i].day == widget.talkList[j].dateInitial.day && widget.talkList[j].selected)
               placeBlocks(i, j, color2, Color.fromARGB(255,247,220,222)),
         ],
       ),
