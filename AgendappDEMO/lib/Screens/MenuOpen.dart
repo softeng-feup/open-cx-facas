@@ -7,14 +7,14 @@ import 'package:flutter_login_page/Screens/All_Talks_Screen/AllTalks.dart';
 import 'package:flutter_login_page/Screens/Schedule_List_Screen/home.dart';
 
 final List<Talk> _talkList = [
-    new Talk(new DateTime(2019, 12, 8, 8, 0), new DateTime(2019, 12, 8, 9, 30), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFF1E90FF), false),
-    new Talk(new DateTime(2019, 12, 8, 12, 0), new DateTime(2019, 12, 8, 13, 0), "Call Tom about appointment", "Work", Color(0xFFFF0000), true),
-    new Talk(new DateTime(2019, 12, 8, 14, 0), new DateTime(2019, 12, 8, 15, 0), "Fix onboarding experience", "Work", Color(0xFF008000), false),
-    new Talk(new DateTime(2019, 12, 8, 16, 0), new DateTime(2019, 12, 8, 17, 0), "Edit API documentation", "Personal", Color(0xFFFFFF00), false),
+  new Talk(new DateTime(2019, 12, 8, 8, 0), new DateTime(2019, 12, 8, 9, 30), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFF1E90FF), false),
+  new Talk(new DateTime(2019, 12, 8, 12, 0), new DateTime(2019, 12, 8, 13, 0), "Call Tom about appointment", "Work", Color(0xFFFF0000), true),
+  new Talk(new DateTime(2019, 12, 8, 14, 0), new DateTime(2019, 12, 8, 15, 0), "Fix onboarding experience", "Work", Color(0xFF008000), false),
+  new Talk(new DateTime(2019, 12, 8, 16, 0), new DateTime(2019, 12, 8, 17, 0), "Edit API documentation", "Personal", Color(0xFFFFFF00), false),
 
-    new Talk(new DateTime(2019, 12, 10, 9, 0), new DateTime(2019, 12, 10, 10, 0), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFFFFFF00), false),
-    new Talk(new DateTime(2019, 12, 10, 16, 0), new DateTime(2019, 12, 10, 17, 30), "Edit API documentation", "Personal", Color(0xFFFF0000), false),
-  ];
+  new Talk(new DateTime(2019, 12, 10, 9, 0), new DateTime(2019, 12, 10, 10, 0), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFFFFFF00), false),
+  new Talk(new DateTime(2019, 12, 10, 16, 0), new DateTime(2019, 12, 10, 17, 30), "Edit API documentation", "Personal", Color(0xFFFF0000), false),
+];
 
 
 class MenuPage extends StatefulWidget {
@@ -29,48 +29,48 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
   int _selectedIndex = 1;
-int _selectedPageIndex = 1;
-String texto = "Schedule";
-bool _isVisible = false;
-bool _isCalendar;
+  int _selectedPageIndex = 1;
+  String texto = "Schedule";
+  bool _isVisible = false;
+  bool _isCalendar;
 
-void _onItemTapped(int index) {
+  void _onItemTapped(int index) {
 
-  setState(() {
-    _selectedIndex = index;
-    if(index == 0){
-      texto = "Schedule";
-      _isVisible = true;
-    }
-    else if(index == 1){
-      texto = "All Talks";
-      _isVisible = false;
-    }
-    else if (index == 2){
-      texto = "Account";
-      _isVisible = false;
-    }
-    this.sheduleIcon = new Icon(Icons.calendar_today);
-    _isCalendar = false;
-    _selectedPageIndex = _selectedIndex;
-  });
-}
+    setState(() {
+      _selectedIndex = index;
+      if(index == 0){
+        texto = "Schedule";
+        _isVisible = true;
+      }
+      else if(index == 1){
+        texto = "All Talks";
+        _isVisible = false;
+      }
+      else if (index == 2){
+        texto = "Account";
+        _isVisible = false;
+      }
+      this.sheduleIcon = new Icon(Icons.calendar_today);
+      _isCalendar = false;
+      _selectedPageIndex = _selectedIndex;
+    });
+  }
 
-final List<Widget> _children = [
-  MyHomePage(talkList: _talkList),
-  MyAllTalksPage(talkList: _talkList),
-  MyAccountPage(),
-  MySchedulePage(talkList: _talkList),
-];
+  final List<Widget> _children = [
+    MyHomePage(talkList: _talkList),
+    MyAllTalksPage(talkList: _talkList),
+    MyAccountPage(),
+    MySchedulePage(talkList: _talkList),
+  ];
 
-Icon sheduleIcon = new Icon (Icons.calendar_today);
+  Icon sheduleIcon = new Icon (Icons.calendar_today);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-          title: Text(
+        title: Text(
           texto,
           style: TextStyle(
             color: Color(0xFFFFFFFF),
@@ -78,8 +78,8 @@ Icon sheduleIcon = new Icon (Icons.calendar_today);
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,
-          ),
-        backgroundColor: Color(0xFF28316C),  
+        ),
+        backgroundColor: Color(0xFF28316C),
       ),
 
       body:_children[_selectedPageIndex],
@@ -89,30 +89,30 @@ Icon sheduleIcon = new Icon (Icons.calendar_today);
         child: Container(
           height: 50,
           child: FloatingActionButton(
-              child: IconButton(
-                icon: sheduleIcon,
-                onPressed: () {
-                  setState((){
-                    if(_isCalendar){
-                      this.sheduleIcon = new Icon(Icons.calendar_today);
-                      _selectedPageIndex = 0;
-                      _isCalendar = false;
-                    }
-                    else{
-                      this.sheduleIcon = new Icon(Icons.format_list_bulleted);
-                      _selectedPageIndex = 3;
-                      _isCalendar = true;
-                    }
-                  }); 
-                },
-              ),
+            child: IconButton(
+              icon: sheduleIcon,
               onPressed: () {
-                null;
-              },       
-          ),  
+                setState((){
+                  if(_isCalendar){
+                    this.sheduleIcon = new Icon(Icons.calendar_today);
+                    _selectedPageIndex = 0;
+                    _isCalendar = false;
+                  }
+                  else{
+                    this.sheduleIcon = new Icon(Icons.format_list_bulleted);
+                    _selectedPageIndex = 3;
+                    _isCalendar = true;
+                  }
+                });
+              },
+            ),
+            onPressed: () {
+              null;
+            },
+          ),
         ),
       ),
-        
+
 
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -138,13 +138,13 @@ Icon sheduleIcon = new Icon (Icons.calendar_today);
             ),
           ),
         ],
-      currentIndex: _selectedIndex,
-      unselectedItemColor: Color(0xFF28316C),
-      selectedItemColor: Color(0xFF28316C),
-      selectedIconTheme: IconThemeData(size: 38, color: Color(0xFF28316C)),
-      unselectedIconTheme: IconThemeData(size: 25, color: Color(0x9F28316C)),
-      onTap: _onItemTapped,
-    ),
+        currentIndex: _selectedIndex,
+        unselectedItemColor: Color(0xFF28316C),
+        selectedItemColor: Color(0xFF28316C),
+        selectedIconTheme: IconThemeData(size: 38, color: Color(0xFF28316C)),
+        unselectedIconTheme: IconThemeData(size: 25, color: Color(0x9F28316C)),
+        onTap: _onItemTapped,
+      ),
     );
   }
 }
