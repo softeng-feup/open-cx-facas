@@ -8,9 +8,10 @@ Widget displayContent(Talk talk) {
       padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
       child: Container(
         padding: const EdgeInsets.all(14.0),
-        height: 86,
+        height: 110,
         decoration: BoxDecoration(
             color: Colors.white,
+            border: Border.all(width: 2, color: talk.color),
             borderRadius: BorderRadius.all(Radius.circular(12)),
             boxShadow: [
               BoxShadow(
@@ -22,15 +23,20 @@ Widget displayContent(Talk talk) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              talk.task,
+              talk.name,
               style: TextStyle(fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+                maxLines: 2
             ),
             SizedBox(
               height: 12,
             ),
-            Text(talk.desc)
+            Text(talk.information,
+                overflow: TextOverflow.ellipsis,
+            maxLines: 2)
           ],
         ),
+
       ),
     ),
   );

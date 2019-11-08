@@ -7,12 +7,12 @@ import 'package:flutter_login_page/Screens/All_Talks_Screen/AllTalks.dart';
 import 'package:flutter_login_page/Screens/Schedule_List_Screen/home.dart';
 
 final List<Talk> _talkList = [
-    new Talk("08:00", "09:00", "Have coffe with Sam", "Personal", false),
-    new Talk("10:00", "11:00", "Meet with sales", "Work", true),
-    new Talk("12:00", "13:00", "Call Tom about appointment", "Work", true),
-    new Talk("14:00", "15:00", "Fix onboarding experience", "Work", false),
-    new Talk("16:00", "16:00", "Edit API documentation", "Personal", false),
-    new Talk("18:00", "17:00", "Setup user focus group", "Personal", true),
+    new Talk(new DateTime(2019, 12, 8, 8, 0), new DateTime(2019, 12, 8, 9, 0), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Colors.yellow, false),
+    new Talk(new DateTime(2019, 12, 8, 10, 0), new DateTime(2019, 12, 8, 11, 0), "Meet with sales", "Work", Colors.blue, true),
+    new Talk(new DateTime(2019, 12, 8, 12, 0), new DateTime(2019, 12, 8, 13, 0), "Call Tom about appointment", "Work", Colors.red, true),
+    new Talk(new DateTime(2019, 12, 8, 14, 0), new DateTime(2019, 12, 8, 15, 0), "Fix onboarding experience", "Work", Colors.green, false),
+    new Talk(new DateTime(2019, 12, 8, 16, 0), new DateTime(2019, 12, 8, 17, 0), "Edit API documentation", "Personal", Colors.yellow, false),
+    new Talk(new DateTime(2019, 12, 8, 18, 0), new DateTime(2019, 12, 8, 19, 0), "Setup user focus group", "Personal", Colors.green, true),
   ];
 
 
