@@ -15,14 +15,16 @@ class AllTalkPage extends StatefulWidget {
 
 class _AllTalkPageState extends State<AllTalkPage> with TickerProviderStateMixin {
 
-List<Tab> myTabs = <Tab>[];
+  List<Tab> myTabs = <Tab>[];
+  Map<String, List<Talk>> myTalksPerDay = new Map();
 
   TabController _tabController;
+
 
   bool hasDateMatch(DateTime dateToLookFor, List<DateTime> myDates){
 
     if(myDates == null)
-        return false;
+      return false;
 
     DateTime result = myDates.firstWhere((o) => (o.day == dateToLookFor.day && o.month == dateToLookFor.month && o.year == dateToLookFor.year), orElse: () => null);
 
@@ -41,8 +43,12 @@ List<Tab> myTabs = <Tab>[];
 
         myDates.add(widget.talkList[i].dateInitial);
 
-        String newDate = new DateFormat("dd MM").format(widget.talkList[i].dateInitial);
+        String newDate = new DateFormat("dd MMM").format(widget.talkList[i].dateInitial);
         myTabs.add(Tab(text: newDate));
+
+
+        var listOfTalks = widget.talkList.where((talk) => (talk.dateInitial.day == widget.talkList[i].dateInitial.day && talk.dateInitial.month == widget.talkList[i].dateInitial.month ));
+        myTalksPerDay[newDate] = listOfTalks.toList();
       }
 
     }
@@ -71,28 +77,28 @@ List<Tab> myTabs = <Tab>[];
         controller: _tabController,
         children: myTabs.map((Tab tab) {
 
-          var listOfDay = widget.talkList.where((talk) => (talk.dateInitial.day == int.parse(tab.text.substring(0, 2)) && talk.dateInitial.month == int.parse(tab.text.substring(3, 5)) ));
+          List<Talk> listOfDay = myTalksPerDay[tab.text];
 
           return ListView.builder(
-          itemCount: listOfDay.length,
-          padding: const EdgeInsets.all(0),
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24),
-              child: Row(
-                children: <Widget>[
-                  displayTime(
-                      new DateFormat("HH:mm").format(listOfDay.elementAt(index).dateInitial),
-                      new DateFormat("HH:mm").format(listOfDay.elementAt(index).dateFinal)),
-                  lineStyle(
-                      context, iconSize, listOfDay.length,
-                     listOfDay.elementAt(index)),
-                  displayContent(listOfDay.elementAt(index))
-                ],
-              ),
-            );
-          },
-        );
+            itemCount: listOfDay.length,
+            padding: const EdgeInsets.all(0),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 24.0, right: 24),
+                child: Row(
+                  children: <Widget>[
+                    displayTime(
+                        new DateFormat("HH:mm").format(listOfDay.elementAt(index).dateInitial),
+                        new DateFormat("HH:mm").format(listOfDay.elementAt(index).dateFinal)),
+                    lineStyle(
+                        context, iconSize, listOfDay.length,
+                        listOfDay.elementAt(index)),
+                    displayContent(listOfDay.elementAt(index))
+                  ],
+                ),
+              );
+            },
+          );
         }).toList(),
       ),
     );
