@@ -21,13 +21,6 @@ class _MyAllTalksPageState extends State<MyAllTalksPage> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(17.0),
-              child: Text(
-                "Monday",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
             Expanded(
               child: AllTalkPage(talkList: widget.talkList),
             )

@@ -13,31 +13,88 @@ class AllTalkPage extends StatefulWidget {
   _AllTalkPageState createState() => _AllTalkPageState();
 }
 
-class _AllTalkPageState extends State<AllTalkPage> {
+class _AllTalkPageState extends State<AllTalkPage> with TickerProviderStateMixin {
+
+List<Tab> myTabs = <Tab>[];
+
+  TabController _tabController;
+
+  bool hasDateMatch(DateTime dateToLookFor, List<DateTime> myDates){
+
+    if(myDates == null)
+        return false;
+
+    DateTime result = myDates.firstWhere((o) => (o.day == dateToLookFor.day && o.month == dateToLookFor.month && o.year == dateToLookFor.year), orElse: () => null);
+
+    return result != null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    List<DateTime> myDates = new List();
+
+    for(int i = 0; i < widget.talkList.length; i++){
+
+      if(!hasDateMatch(widget.talkList[i].dateInitial, myDates)){
+
+        myDates.add(widget.talkList[i].dateInitial);
+
+        String newDate = new DateFormat("dd MM").format(widget.talkList[i].dateInitial);
+        myTabs.add(Tab(text: newDate));
+      }
+
+    }
+
+    _tabController = TabController(vsync: this, length: myTabs.length);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     double iconSize = 20;
 
-    return ListView.builder(
-      itemCount: widget.talkList.length,
-      padding: const EdgeInsets.all(0),
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24),
-          child: Row(
-            children: <Widget>[
-              displayTime(
-                  new DateFormat("HH:mm").format(widget.talkList[index].dateInitial),
-                  new DateFormat("HH:mm").format(widget.talkList[index].dateFinal)),
-              lineStyle(
-                  context, iconSize, widget.talkList.length,
-                  widget.talkList[index]),
-              displayContent(widget.talkList[index])
-            ],
-          ),
+    return Scaffold(
+      appBar: TabBar(
+        indicatorColor: Color(0xFF28316C),
+          labelColor: Color(0xFF28316C),
+          controller: _tabController,
+          tabs: myTabs,
+        ),
+      body: TabBarView(
+        controller: _tabController,
+        children: myTabs.map((Tab tab) {
+
+          var listOfDay = widget.talkList.where((talk) => (talk.dateInitial.day == int.parse(tab.text.substring(0, 2)) && talk.dateInitial.month == int.parse(tab.text.substring(3, 5)) ));
+
+          return ListView.builder(
+          itemCount: listOfDay.length,
+          padding: const EdgeInsets.all(0),
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 24.0, right: 24),
+              child: Row(
+                children: <Widget>[
+                  displayTime(
+                      new DateFormat("HH:mm").format(listOfDay.elementAt(index).dateInitial),
+                      new DateFormat("HH:mm").format(listOfDay.elementAt(index).dateFinal)),
+                  lineStyle(
+                      context, iconSize, listOfDay.length,
+                     listOfDay.elementAt(index)),
+                  displayContent(listOfDay.elementAt(index))
+                ],
+              ),
+            );
+          },
         );
-      },
+        }).toList(),
+      ),
     );
   }
 

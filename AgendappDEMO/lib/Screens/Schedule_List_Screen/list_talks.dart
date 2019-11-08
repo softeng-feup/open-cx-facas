@@ -13,7 +13,48 @@ class TalkPage extends StatefulWidget {
   _TalkPageState createState() => _TalkPageState();
 }
 
-class _TalkPageState extends State<TalkPage> {
+class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
+
+  List<Tab> myTabs = <Tab>[];
+
+  TabController _tabController;
+
+  bool hasDateMatch(DateTime dateToLookFor, List<DateTime> myDates){
+
+    if(myDates == null)
+      return false;
+
+    DateTime result = myDates.firstWhere((o) => (o.day == dateToLookFor.day && o.month == dateToLookFor.month && o.year == dateToLookFor.year), orElse: () => null);
+
+    return result != null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    List<DateTime> myDates = new List();
+
+    for(int i = 0; i < widget.talkList.length; i++){
+
+      if(!hasDateMatch(widget.talkList[i].dateInitial, myDates)){
+
+        myDates.add(widget.talkList[i].dateInitial);
+
+        String newDate = new DateFormat("dd MM").format(widget.talkList[i].dateInitial);
+        myTabs.add(Tab(text: newDate));
+      }
+
+    }
+
+    _tabController = TabController(vsync: this, length: myTabs.length);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,29 +67,41 @@ class _TalkPageState extends State<TalkPage> {
         selectedTalks.add(talk);
     }
 
-    return ListView.builder(
-      itemCount: selectedTalks.length,
-      padding: const EdgeInsets.all(0),
-      itemBuilder: (context, index) {
+    return Scaffold(
+      appBar: TabBar(
+        indicatorColor: Color(0xFF28316C),
+        labelColor: Color(0xFF28316C),
+        controller: _tabController,
+        tabs: myTabs,
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: myTabs.map((Tab tab) {
 
-        if(!selectedTalks[index].selected)
-          return null;
+          var listOfDay = selectedTalks.where((talk) => (talk.dateInitial.day == int.parse(tab.text.substring(0, 2)) && talk.dateInitial.month == int.parse(tab.text.substring(3, 5)) ));
 
-        return Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24),
-          child: Row(
-            children: <Widget>[
-              displayTime(
-                  new DateFormat("HH:mm").format(widget.talkList[index].dateInitial),
-                  new DateFormat("HH:mm").format(widget.talkList[index].dateFinal)),
-              lineStyle(
-                  context, iconSize, selectedTalks.length,
-                  selectedTalks[index]),
-              displayContent(selectedTalks[index])
-            ],
-          ),
-        );
-      },
+          return ListView.builder(
+            itemCount: listOfDay.length,
+            padding: const EdgeInsets.all(0),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 24.0, right: 24),
+                child: Row(
+                  children: <Widget>[
+                    displayTime(
+                        new DateFormat("HH:mm").format(listOfDay.elementAt(index).dateInitial),
+                        new DateFormat("HH:mm").format(listOfDay.elementAt(index).dateFinal)),
+                    lineStyle(
+                        context, iconSize, listOfDay.length,
+                        listOfDay.elementAt(index)),
+                    displayContent(listOfDay.elementAt(index))
+                  ],
+                ),
+              );
+            },
+          );
+        }).toList(),
+      ),
     );
   }
 

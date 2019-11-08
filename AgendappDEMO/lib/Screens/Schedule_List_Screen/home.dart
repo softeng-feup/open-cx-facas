@@ -21,13 +21,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(17.0),
-            child: Text(
-              "Monday",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
           Expanded(
             child: TalkPage(talkList: widget.talkList),
           )
