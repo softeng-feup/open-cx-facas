@@ -82,7 +82,8 @@ We have implemented a vertical prototype, a thin slice of the system. The flowin
 1. As a conference atendee, I want to be presented with all talks available so that I can add them to my personal schedule.
 2. As a conference atendee, I want to be able to edit my schedule so I can change my mind.
 3. As a conference atendee, I want to be presented with all talks available so that I can remove a talk I previously added to my schedule
-4. As a user, I want to be able to login into the app so that I can get all my personal data saved and accessible trough any device.
+4. As a conference atendee, I want to be able see my personal schedule so that I can have a fast read of how I should organize myself.
+5. As a user, I want to be able to login into the app so that I can get all my personal data saved and accessible trough any device.
 
 
 ---
