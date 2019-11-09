@@ -62,7 +62,7 @@ In trello link above (check the tags).
 
 ### Domain model
 
-TO DO: CHECK IF IT IS CORRECT
+![Domain Model](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%202.png)
 
 ---
 
