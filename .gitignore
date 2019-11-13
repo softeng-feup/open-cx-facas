@@ -1,1 +1,7 @@
+# Miscellaneous
 .DS_Store
+.AgendappDEMO/pubspec.yaml
+.AgendappDEMO/android/build.gradle
+.AgendappDEMO/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/flutter_export_environment.sh
+
