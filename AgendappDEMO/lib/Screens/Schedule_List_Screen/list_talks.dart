@@ -101,7 +101,7 @@ class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
                     lineStyle(
                         context, iconSize, listOfDay.length,
                         listOfDay.elementAt(index)),
-                    displayContent(listOfDay.elementAt(index))
+                    displayContent(listOfDay.elementAt(index), context)
                   ],
                 ),
               );
