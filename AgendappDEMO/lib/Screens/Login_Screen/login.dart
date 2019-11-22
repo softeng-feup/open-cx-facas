@@ -5,6 +5,8 @@ import '../MenuOpen.dart';
 import 'signUp.dart';
 import 'recoverPassword.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -12,6 +14,16 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isHidden = true;
+
+  final FirebaseMessaging _messaging = FirebaseMessaging() ;
+
+  @override
+  void initState(){
+    super.initState();
+    _messaging.getToken().then((token){
+      print(token);
+    });
+  }
 
   void _toggleVisibility() {
     setState(() {
