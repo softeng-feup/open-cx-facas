@@ -32,12 +32,6 @@ Widget displayThemeTalk(ThemeTalk theme) {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: theme.color,
-              shadows: [
-                Shadow(
-                  blurRadius: 5.0,
-                  color: Color(0xFFD8D8D8),
-                )
-              ],
             )),
       ));
 }
