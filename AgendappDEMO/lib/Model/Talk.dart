@@ -1,26 +1,32 @@
 import 'dart:ui';
 
-import 'package:flutter_login_page/Model/Theme.dart';
+import 'package:flutter/material.dart';
+
+import 'ThemeTalk.dart';
 
 class Talk {
   DateTime dateInitial;
   DateTime dateFinal;
   String name;
   String information;
-  Color color;
   bool selected;
   List<String> speakers = new List<String>();
   String location = "";
-  List<Theme> themes = new List<Theme>();
+  List<ThemeTalk> themes = new List<ThemeTalk>();
 
-  Talk(this.dateInitial, this.dateFinal, this.name, this.information, this.color, this.location, this.selected){
-
-    speakers.add("Speaker1");
-    speakers.add("Speaker2");
-  }
+  Talk(this.dateInitial, this.dateFinal, this.name, this.information,
+      this.location, this.selected,  this.speakers, this.themes);
 
   void addSpeaker(String speaker){
 
     this.speakers.add(speaker);
   }
+
+  Color getColor(){
+    if (themes.length == 0)
+      return Color(0xFF000000);
+
+    return themes[0].color;
+  }
+
 }

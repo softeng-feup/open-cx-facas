@@ -19,7 +19,7 @@ Widget displayContent(Talk talk, BuildContext context) {
         height: 110,
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(width: 2, color: talk.color),
+            border: Border.all(width: 2, color: talk.getColor()),
             borderRadius: BorderRadius.all(Radius.circular(12)),
             boxShadow: [
               BoxShadow(
