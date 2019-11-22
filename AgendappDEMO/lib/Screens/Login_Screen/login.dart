@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login_page/Screens/Login_Screen/recoverPassword.dart';
 
-import 'MenuOpen.dart';
-
-import 'package:firebase_messaging/firebase_messaging.dart';
+import '../MenuOpen.dart';
+import 'signUp.dart';
+import 'recoverPassword.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,17 +12,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isHidden = true;
-
-  final FirebaseMessaging _messaging = FirebaseMessaging() ;
-
-  @override
-  void initState(){
-    super.initState();
-
-    _messaging.getToken().then((token){
-      print(token );
-    });
-  }
 
   void _toggleVisibility() {
     setState(() {
@@ -32,10 +22,17 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF283468),
       resizeToAvoidBottomPadding: false,
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/porto.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding:
-            EdgeInsets.only(top: 100.0, right: 20.0, left: 20.0, bottom: 20.0),
+            EdgeInsets.only(top: 100.0, right: 25.0, left: 25.0, bottom: 0.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -43,21 +40,22 @@ class _LoginPageState extends State<LoginPage> {
               'Agendapp',
               style: TextStyle(
                 fontSize: 50.0,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(
-              height: 40.0,
+              height: 20.0,
             ),
             Text(
               "‹Programming› 2020",
               style: TextStyle(
                 fontSize: 20.0,
-                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             SizedBox(
-              height: 40.0,
+              height: 60.0,
             ),
             buildTextField("Username"),
             SizedBox(
@@ -71,12 +69,20 @@ class _LoginPageState extends State<LoginPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  Text(
-                    "Forgotten Password?",
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute<Null>(
+                          builder: (BuildContext context) {
+                        return new RecoverPasswordPage();
+                      }));
+                    },
+                    child: Text(
+                      "Forgot your Password?",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
@@ -90,14 +96,25 @@ class _LoginPageState extends State<LoginPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Don't have an account?"),
+                    Text("Don't have an account?",
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                     SizedBox(
                       width: 10.0,
                     ),
-                    Text("SIGN UP",
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                        ))
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute<Null>(
+                              builder: (BuildContext context) {
+                            return new SignUpPage();
+                          }));
+                        },
+                        child: Text("SIGN UP",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            )))
                   ],
                 ),
               ),
@@ -110,15 +127,16 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildTextField(String hintText) {
     return TextField(
+      style: new TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
-          color: Colors.grey,
+          color: Colors.white,
           fontSize: 16.0,
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
+        // border: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(20.0),
+        // ),
         prefixIcon: hintText == "Username"
             ? Icon(Icons.account_circle)
             : Icon(Icons.lock),
@@ -147,15 +165,16 @@ class _LoginPageState extends State<LoginPage> {
         height: 56.0,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(23.0),
-          color: Color(0xFF283593),
+          borderRadius: BorderRadius.circular(20.0),
+          color: Colors.white,
         ),
         child: Center(
           child: Text(
             "Login",
             style: TextStyle(
-              color: Colors.white,
-              fontSize: 18.0,
+              color: Color(0xFF283468),
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
