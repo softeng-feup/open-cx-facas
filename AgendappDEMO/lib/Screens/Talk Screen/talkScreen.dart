@@ -91,7 +91,7 @@ Widget showDescription(Talk talk) {
             )),
         Container(
             padding:
-                EdgeInsets.only(top: 20, bottom: 15, left: 20.0, right: 15.0),
+                EdgeInsets.only(top: 20, bottom: 20, left: 20.0, right: 15.0),
             child: Text(
               talk.information,
               style: TextStyle(fontSize: 16.0, color: Colors.black),
