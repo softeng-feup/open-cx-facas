@@ -89,6 +89,7 @@ class _MenuPageState extends State<MenuPage> {
         child: Container(
           height: 50,
           child: FloatingActionButton(
+            backgroundColor: Color(0xFF28316C),
             child: IconButton(
               icon: sheduleIcon,
               onPressed: () {

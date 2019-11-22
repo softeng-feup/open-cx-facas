@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
+import 'package:flutter_login_page/Screens/Talk%20Screen/talkScreen.dart';
 
 class MySchedulePage extends StatefulWidget {
   final List<Talk> talkList;
@@ -117,26 +118,32 @@ class MySchedulePageState extends State<MySchedulePage> {
               height: MediaQuery.of(context).size.height * 0.04 * (firstBlock-finalBlockBefore),
               width: MediaQuery.of(context).size.width,
             ),
-            Container(
-              color: widget.talkList[j].color.withOpacity(0.5),
-              height: MediaQuery.of(context).size.height * 0.04 * numBlocks,
-              width: MediaQuery.of(context).size.width,
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      widget.talkList[j].name,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF222222),
-                        fontSize: 12
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                        maxLines: numBlocks,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+                  return new TalkScreen(talk: widget.talkList[j]);
+                }));
+              },
+              child: Container(
+                color: widget.talkList[j].color.withOpacity(0.5),
+                height: MediaQuery.of(context).size.height * 0.04 * numBlocks,
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.talkList[j].name,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFF222222),
+                          fontSize: 12
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                          maxLines: numBlocks,
+                    ),
                   ),
                 ),
               ),
-              
             )
           ],
         )
