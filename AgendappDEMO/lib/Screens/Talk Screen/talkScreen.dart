@@ -38,13 +38,12 @@ class _LoginPageState extends State<TalkScreen> {
         backgroundColor: Color(0xFF28316C),
       ),
       body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: <Widget>[
             informationTop(widget.talk),
             showDescription(widget.talk),
-            showSpeakers(),
-            showLocation(),
+            showSpeakers(widget.talk),
+            showLocation(widget.talk),
           ],
         ),
       ),
@@ -69,7 +68,7 @@ Widget informationTop(Talk talk) {
         style: TextStyle(fontSize: 14.0, color: Colors.black),
       ),
       Text(
-        'Room 101',
+        talk.location,
         style: TextStyle(fontSize: 14.0, color: Colors.black),
       ),
     ]),
@@ -99,9 +98,10 @@ Widget showDescription(Talk talk) {
       ]);
 }
 
-Widget showSpeakers() {
-  return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+Widget showSpeakers(Talk talk) {
+  return ListView(
+      shrinkWrap: true,
+      physics: ClampingScrollPhysics(),
       children: <Widget>[
         SizedBox(
             width: double.infinity,
@@ -113,18 +113,26 @@ Widget showSpeakers() {
                 style: TextStyle(fontSize: 20.0, color: Color(0xff6B6B6B)),
               ),
             )),
-        Container(
-            padding: EdgeInsets.only(top: 20, bottom: 15, left: 20.0, right: 15.0),
-            child: Text(
-              'SpeakersSpeakersSpeakers'
-                  'SpeakersSpeakersSpeakersSpeakers'
-                  'SpeakersSpeakersSpeakersSpeakers',
-              style: TextStyle(fontSize: 18.0, color: Colors.black),
-            )),
-      ]);
+        showSpeakersName(talk.speakers)
+  ]);
 }
 
-Widget showLocation() {
+Widget showSpeakersName(List<String> speakers){
+
+  return ListView.builder(
+      physics: ClampingScrollPhysics(),
+      padding: EdgeInsets.only(top: 15, bottom: 15, left: 20.0, right: 15.0),
+    shrinkWrap: true,
+    itemCount: speakers.length,
+    itemBuilder: (context, index) {
+      return Text(speakers[index],  style: TextStyle(fontSize: 18.0, color: Colors.black));
+    },
+  );
+
+}
+
+
+Widget showLocation(Talk talk) {
   return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -141,7 +149,7 @@ Widget showLocation() {
         Container(
             padding: EdgeInsets.only(top: 20, bottom: 15, left: 20.0),
             child: Text(
-              'Room 101',
+              talk.location,
               style: TextStyle(fontSize: 18.0, color: Colors.black),
             )),
       ]);

@@ -7,13 +7,12 @@ import 'package:flutter_login_page/Screens/All_Talks_Screen/AllTalks.dart';
 import 'package:flutter_login_page/Screens/Schedule_List_Screen/home.dart';
 
 final List<Talk> _talkList = [
-  new Talk(new DateTime(2019, 12, 8, 8, 0), new DateTime(2019, 12, 8, 9, 30), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFF1E90FF), false),
-  new Talk(new DateTime(2019, 12, 8, 12, 0), new DateTime(2019, 12, 8, 13, 0), "Call Tom about appointment", "Work", Color(0xFFFF0000), true),
-  new Talk(new DateTime(2019, 12, 8, 14, 0), new DateTime(2019, 12, 8, 15, 0), "Fix onboarding experience", "Work", Color(0xFF008000), false),
-  new Talk(new DateTime(2019, 12, 8, 16, 0), new DateTime(2019, 12, 8, 17, 0), "Edit API documentation", "Personal", Color(0xFFFFFF00), false),
-
-  new Talk(new DateTime(2019, 12, 10, 9, 0), new DateTime(2019, 12, 10, 10, 0), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFFFFFF00), true),
-  new Talk(new DateTime(2019, 12, 10, 16, 0), new DateTime(2019, 12, 10, 17, 30), "Edit API documentation", "Personal", Color(0xFFFF0000), false),
+  new Talk(new DateTime(2019, 12, 8, 8, 0), new DateTime(2019, 12, 8, 9, 30), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFF1E90FF), "Room 101", false),
+  new Talk(new DateTime(2019, 12, 8, 12, 0), new DateTime(2019, 12, 8, 13, 0), "Call Tom about appointment", "Work", Color(0xFFFF0000), "Room 102", true),
+  new Talk(new DateTime(2019, 12, 8, 14, 0), new DateTime(2019, 12, 8, 15, 0), "Fix onboarding experience", "Work", Color(0xFF008000), "Room 103", false),
+  new Talk(new DateTime(2019, 12, 8, 16, 0), new DateTime(2019, 12, 8, 17, 0), "Edit API documentation", "Personal", Color(0xFFFFFF00), "Room 104", false),
+  new Talk(new DateTime(2019, 12, 10, 9, 0), new DateTime(2019, 12, 10, 10, 0), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", Color(0xFFFFFF00), "Room 105", true),
+  new Talk(new DateTime(2019, 12, 10, 16, 0), new DateTime(2019, 12, 10, 17, 30), "Edit API documentation", "Personal", Color(0xFFFF0000), "Room 106", false),
 ];
 
 
