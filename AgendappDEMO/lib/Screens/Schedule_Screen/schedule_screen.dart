@@ -114,13 +114,29 @@ class MySchedulePageState extends State<MySchedulePage> {
           children: <Widget>[
             Container(
               color: backColor,
-              height: MediaQuery.of(context).size.width * 0.055*(firstBlock-finalBlockBefore),
+              height: MediaQuery.of(context).size.height * 0.04 * (firstBlock-finalBlockBefore),
               width: MediaQuery.of(context).size.width,
             ),
             Container(
               color: widget.talkList[j].color.withOpacity(0.5),
-              height: MediaQuery.of(context).size.width * 0.055 * numBlocks,
+              height: MediaQuery.of(context).size.height * 0.04 * numBlocks,
               width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      widget.talkList[j].name,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF222222),
+                        fontSize: 12
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                        maxLines: numBlocks,
+                  ),
+                ),
+              ),
+              
             )
           ],
         )
@@ -130,7 +146,7 @@ class MySchedulePageState extends State<MySchedulePage> {
   Container displayTime(int i){
     return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Text(
             timeInterval[i],
@@ -142,7 +158,7 @@ class MySchedulePageState extends State<MySchedulePage> {
         ],
       ),
       color: Colors.white,
-      height: MediaQuery.of(context).size.width * 0.055,
+      height: MediaQuery.of(context).size.height * 0.04,
       width: MediaQuery.of(context).size.width,
     );
   }
@@ -188,14 +204,11 @@ class MySchedulePageState extends State<MySchedulePage> {
                     ),
                   ],
                 ),
-
               ],
             ),
             color: color1,
-            height: MediaQuery.of(context).size.width * (1/(daysList.length + 1)),
-            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.08,
           ),
-
           for(int j = 0; j < widget.talkList.length; j++)
             if(daysList[i].day == widget.talkList[j].dateInitial.day && widget.talkList[j].selected)
               placeBlocks(i, j, color2, Color.fromARGB(255,247,220,222)),
@@ -203,8 +216,7 @@ class MySchedulePageState extends State<MySchedulePage> {
       ),
       alignment: Alignment.topLeft,
       color: color2,
-      width: MediaQuery.of(context).size.width * (1/(daysList.length + 1)),
-      height: MediaQuery.of(context).size.height,
+      width: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width * 0.15)) * 0.3333,
     );
 
   }
@@ -213,7 +225,7 @@ class MySchedulePageState extends State<MySchedulePage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Container(
-            height: MediaQuery.of(context).size.width * (0.055 * (timeInterval.length - 2) + 0.1 + 1/(daysList.length + 1)),
+            height: MediaQuery.of(context).size.height * 0.92,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -222,8 +234,7 @@ class MySchedulePageState extends State<MySchedulePage> {
                     children: <Widget> [
                       Container(
                         color: Colors.white,
-                        height: MediaQuery.of(context).size.width * (1/(daysList.length + 1 + 1.1)),
-                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.08,
                       ),
                       for(int i = 0; i < timeInterval.length; i++)
                         displayTime(i),
@@ -231,12 +242,21 @@ class MySchedulePageState extends State<MySchedulePage> {
                   ),
                   alignment: Alignment.topLeft,
                   color: Colors.white,
-                  width: MediaQuery.of(context).size.width * (1/(daysList.length + 1)),
+                  width: MediaQuery.of(context).size.width * 0.15,
                   height: MediaQuery.of(context).size.height,
                 ),
-                for(int i = 0 ; i < daysList.length ; i ++)
-                  displaySchedule(i),
-
+                Container(
+                  width: MediaQuery.of(context).size.width * (1- 0.15),
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      for(int i = 0 ; i < daysList.length ; i ++)
+                        displaySchedule(i),
+                    ],
+                  ),
+                ),
+                
               ],
             )
         )
