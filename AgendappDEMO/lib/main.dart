@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_page/Widget/local_notification_widget.dart';
+import 'Notification/notification_page.dart';
 import 'Screens/Login_Screen/login.dart';
 
 void main() => runApp(App());
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
           textSelectionColor: Color(0xFF5b78f5),
           textSelectionHandleColor: Color(0xFF5b78f5),
           fontFamily: "Ubuntu"),
-      home: LoginPage(), //todo MainPage()?
+      home: NotificationPage(), //todo MainPage()?
     );
   }
 }
