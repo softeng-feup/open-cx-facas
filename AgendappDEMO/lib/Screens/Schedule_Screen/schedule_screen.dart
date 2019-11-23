@@ -155,7 +155,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
                 }));
               },
               child: Container(
-                color: widget.talkList[j].color.withOpacity(0.5),
+                color: widget.talkList[j].getColor().withOpacity(0.5),
                 height: MediaQuery.of(context).size.height * blockSize * numBlocks,
                 width: MediaQuery.of(context).size.width,
                 child: Center(
