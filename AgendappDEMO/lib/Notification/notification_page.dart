@@ -56,11 +56,12 @@ class _NotificationPageState extends State<NotificationPage> {
     );
   }
 
+  //erase notification
   Future<void> dismissNotification(int id)async{
     await _notificationPlugin.cancelNotifications(id);
     refreshNotification();
   }
-
+  //refresh notification list
   void refreshNotification(){
     setState(() {
       notificationFuture = _notificationPlugin.getScheduleNotifications();
@@ -82,7 +83,7 @@ class _NotificationPageState extends State<NotificationPage> {
           id=i; 
         }
       }
-      await _notificationPlugin.showDailyAtTime(
+      await _notificationPlugin.showDailyAtTime( //todo change to weekly at time
           notificationData.time,
           id,
           notificationData.title,

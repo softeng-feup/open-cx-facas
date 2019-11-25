@@ -80,6 +80,7 @@ class _CreateNotificationPageState extends State<CreateNotificationPage> {
     }
   }
 
+  //* create notification function
   void createNotification() {
       final title = _titleController.text;
       final description = _descriptionController.text;
@@ -87,6 +88,17 @@ class _CreateNotificationPageState extends State<CreateNotificationPage> {
 
       final notificationData = NotificationData(title, description, time);
       Navigator.of(context).pop(notificationData);
+  }
+
+  //* create notification function
+  void createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) { //e so estupido nao poder user os mesmos nomes mas ok...
+    final title = titleTalk;
+    final description = descriptionTalk;
+    final time = timeTalk;
+    final day = dayTalk; //to be used when i integrate weekly notification
+
+    final notificationData = NotificationData(title, description, time);
+    Navigator.of(context).pop(notificationData);
   }
 }
 

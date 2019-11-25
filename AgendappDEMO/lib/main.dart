@@ -16,7 +16,7 @@ class App extends StatelessWidget {
           textSelectionColor: Color(0xFF5b78f5),
           textSelectionHandleColor: Color(0xFF5b78f5),
           fontFamily: "Ubuntu"),
-      home: NotificationPage(), //todo MainPage()?
+      home: LoginPage(), //todo MainPage()?
     );
   }
 }
