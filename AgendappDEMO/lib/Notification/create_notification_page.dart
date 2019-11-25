@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import 'custom_wide_flat_button.dart';
 import 'notification_data.dart';
 
 class CreateNotificationPage extends StatefulWidget {
@@ -13,6 +14,8 @@ class _CreateNotificationPageState extends State<CreateNotificationPage> {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
   TimeOfDay selectedTime = TimeOfDay.now();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +30,8 @@ class _CreateNotificationPageState extends State<CreateNotificationPage> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8),
+              child: Form(
+                key:_formKey,
               child: Column(
                 children: <Widget>[
                   CustomInputField(
@@ -47,14 +52,16 @@ class _CreateNotificationPageState extends State<CreateNotificationPage> {
                       onPressed: selectTime,
                       color: Colors.blue,
                       child: Text(selectedTime.format(context))
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-          FlatButton(
+          CustomWideFlatButton(
             onPressed: createNotification,
-            child: Text('CREATE'),
+            backgroundColor: Colors.blue.shade300,
+            foregroundColor: Colors.blue.shade900,
           ),
         ],
       ),

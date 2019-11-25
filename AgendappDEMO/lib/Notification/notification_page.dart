@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_login_page/Notification/create_notification.dart';
+import 'package:flutter_login_page/Notification/create_notification_page.dart';
+import 'package:flutter_login_page/Notification/custom_wide_flat_button.dart';
 import 'package:flutter_login_page/Notification/notification_data.dart';
 import 'package:flutter_login_page/Notification/notification_plugin.dart';
 
@@ -35,39 +36,35 @@ class _NotificationPageState extends State<NotificationPage> {
                   itemCount: notifications.length,
                   itemBuilder: (context, index) {
                     final notification = notifications[index];
-                    return Text(notification.title);
+                    return NotificationTile(
+                      notification: notification,
+                      deleteNotification: dismissNotification,
+                    );
                   },
                 ),
               );
             },
           ),
-          FlatButton(
-            padding: EdgeInsets.all(0),
+          CustomWideFlatButton(
             onPressed: navigateToNotificationCreation,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(5),
-                bottomRight: Radius.circular(5),
-              ),
-            ),
-            color: Colors.blue.shade300,
-            child: Container(
-              alignment: Alignment.center,
-              height: 50,
-              width: double.infinity,
-              child: Text(
-                'Create',
-                style: TextStyle(
-                  color: Colors.blue.shade900,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
+            backgroundColor: Colors.blue.shade300,
+            foregroundColor: Colors.blue.shade900,
+            isRoundedAtBottom: false,
+          )
         ],
       ),
     );
+  }
+
+  Future<void> dismissNotification(int id)async{
+    await _notificationPlugin.cancelNotifications(id);
+    refreshNotification();
+  }
+
+  void refreshNotification(){
+    setState(() {
+      notificationFuture = _notificationPlugin.getScheduleNotifications();
+    });
   }
   
   Future<void> navigateToNotificationCreation() async{
@@ -91,6 +88,32 @@ class _NotificationPageState extends State<NotificationPage> {
           notificationData.title,
           notificationData.description
       );
+      refreshNotification();
     }
+  }
+}
+
+class NotificationTile extends StatelessWidget{
+  const NotificationTile({
+    Key key,
+    @required this.notification,
+    @required this.deleteNotification,
+}): super(key: key);
+
+  final PendingNotificationRequest notification;
+  final Function(int id) deleteNotification;
+
+  @override
+  Widget build(BuildContext context){
+    return Card(
+      child: ListTile(
+        title: Text(notification.title),
+        subtitle: Text(notification.body),
+        trailing: IconButton(
+          onPressed: () => deleteNotification(notification.id),
+          icon: Icon(Icons.delete),
+        ),
+      ),
+    );
   }
 }
