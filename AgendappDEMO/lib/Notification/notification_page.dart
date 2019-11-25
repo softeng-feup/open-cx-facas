@@ -23,7 +23,21 @@ class _NotificationPageState extends State<NotificationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Manage Notifications',
+          style: TextStyle(
+            color: Color(0xFFFFFFFF),
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color(0xFF28316C),
+      ),
+      body: Center(
       child: Column(
         children: <Widget>[
           FutureBuilder<List<PendingNotificationRequest>>(
@@ -52,6 +66,7 @@ class _NotificationPageState extends State<NotificationPage> {
             isRoundedAtBottom: false,
           )
         ],
+      ),
       ),
     );
   }

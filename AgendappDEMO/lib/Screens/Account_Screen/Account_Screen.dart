@@ -24,7 +24,7 @@ class MyAccountPageState extends State<MyAccountPage> {
           onPressed: () {
             Navigator.of(context)
                 .push(MaterialPageRoute<Null>(builder: (BuildContext context){
-              return new NotificationPage();
+              return NotificationPage();
             }));
           },
         ),
