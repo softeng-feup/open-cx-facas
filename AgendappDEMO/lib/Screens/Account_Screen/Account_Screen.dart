@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
+import 'package:flutter_login_page/Notification/notification_page.dart';
 
 class MyAccountPage extends StatefulWidget {
   final List<Talk> talkList;
@@ -13,11 +14,20 @@ class MyAccountPage extends StatefulWidget {
 class MyAccountPageState extends State<MyAccountPage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(17.0),
-      child: Text(
-        "Account: to be developed!",
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    return Scaffold(
+      body: Center(
+        child: FlatButton.icon(
+          color: Color(0xFF28316C),
+          icon: Icon(Icons.access_alarms), //`Icon` to display
+          label: Text('Manage Notifications'), //`Text` to display
+          textColor: Colors.white,
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute<Null>(builder: (BuildContext context){
+              return NotificationPage();
+            }));
+          },
+        ),
       ),
     );
   }
