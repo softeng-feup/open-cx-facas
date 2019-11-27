@@ -64,7 +64,8 @@ Widget informationTop(Talk talk) {
             ),
             displayAllThemes(talk.themes),
             Text(
-              new DateFormat("EEE, MMM d 'at' HH:mm").format(talk.dateInitial),
+              new DateFormat("EEE, MMM d, HH:mm").format(talk.dateInitial) +
+                  new DateFormat(' to HH:mm').format(talk.dateFinal),
               style: TextStyle(fontSize: 14.0, color: Colors.black),
             ),
             Text(

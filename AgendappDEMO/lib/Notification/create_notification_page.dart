@@ -6,6 +6,7 @@ import 'custom_wide_flat_button.dart';
 import 'notification_data.dart';
 
 class CreateNotificationPage extends StatefulWidget {
+
   @override
   _CreateNotificationPageState createState() => _CreateNotificationPageState();
 }
