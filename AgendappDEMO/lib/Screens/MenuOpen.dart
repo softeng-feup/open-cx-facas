@@ -11,6 +11,12 @@ final List<ThemeTalk> allThemes = [
   new ThemeTalk("Auto/Tech", Color(0xFF1E90FF)),
   new ThemeTalk("Sports", Color(0xFFFF0000)),
   new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
+  new ThemeTalk("Pitch!", Color(0xFFFFA000)),
+  new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
+  new ThemeTalk("Pitch!", Color(0xFFFFA000)),
+  new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
+  new ThemeTalk("Pitch!", Color(0xFFFFA000)),
+  new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
   new ThemeTalk("Pitch!", Color(0xFFFFA000))
 ];
 

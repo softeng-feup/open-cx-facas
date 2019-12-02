@@ -3,22 +3,22 @@ import 'package:flutter_login_page/Model/ThemeTalk.dart';
 
 Widget displayAllThemes(List<ThemeTalk> themes) {
   return Container(
-      height: 76.0,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        physics: ClampingScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: themes.length,
-        itemBuilder: (context, index) {
-          return displayThemeTalk(themes[index]);
-        },
-      ));
+    padding: const EdgeInsets.only(bottom: 20, top: 20),
+    child: Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 10,
+            runSpacing: 10,
+            children: <Widget>[
+              for(int i = 0; i < themes.length; i++)
+                displayThemeTalk(themes[i]),
+
+            ],
+
+          ));
 }
 
 Widget displayThemeTalk(ThemeTalk theme) {
   return Container(
-      padding: const EdgeInsets.only(right: 10, left: 0, top: 20, bottom: 20),
-      child: Container(
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
             color: Colors.white,
@@ -33,5 +33,5 @@ Widget displayThemeTalk(ThemeTalk theme) {
               fontWeight: FontWeight.bold,
               color: theme.color,
             )),
-      ));
+      );
 }

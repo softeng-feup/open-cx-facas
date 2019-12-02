@@ -56,8 +56,6 @@ class MySchedulePageState extends State<MySchedulePage>   {
     }
   }
 
-  
-
   String convertWeekDay(int day){
     switch (day) {
       case 1:
@@ -131,13 +129,12 @@ class MySchedulePageState extends State<MySchedulePage>   {
 
 // Usado para facilitar a colocaçao dos blocos na tabela
   void convertToBlocks(DateTime initTime, DateTime finalTime){
-
     firstBlock = ((initTime.hour-8)*2 + (initTime.minute)/30).round();
     finalBlock = ((finalTime.hour-8)*2 + (finalTime.minute)/30).round();
     numBlocks = finalBlock - firstBlock;
   }
 
-  Container placeBlocks(int i, int j, Color backColor, Color blockColor){
+  Widget individualTalkBlock(int i, int j, Color backColor, Color blockColor){
     int finalBlockBefore = finalBlock;
     convertToBlocks(widget.talkList[j].dateInitial, widget.talkList[j].dateFinal);
     return Container(
@@ -180,7 +177,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
     );
   }
 
-  Container displayTime(int i){
+  Widget individualTimeBlock(int i){
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -200,7 +197,125 @@ class MySchedulePageState extends State<MySchedulePage>   {
     );
   }
 
-  Widget displaySchedule(int i){
+  Widget dayHeaderContainer(int i, Color color) {
+    return Container(
+      child: Row (
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                convertWeekDay(daysList[i].weekday),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF444444),
+                    fontSize: 20
+                ),
+              ),
+              Text(
+                daysList[i].day.toString() + convertMonth(daysList[i].month),
+                style: TextStyle(
+                    color: Color(0xFF666666),
+                    fontSize: 13
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      color: color,
+      height: MediaQuery.of(context).size.height * 2*blockSize,
+    );
+  }
+
+  Widget blockContainer(int i, Color color) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.7,
+      color: color,
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        controller: controllers[i],
+        children: <Widget>[
+          for(int j = 0; j < widget.talkList.length; j++)
+            if(daysList[i].day == widget.talkList[j].dateInitial.day && widget.talkList[j].selected)
+              individualTalkBlock(i, j, color, Color.fromARGB(255,247,220,222)),
+          Container(
+            color: Colors.black.withOpacity(0),
+            height:MediaQuery.of(context).size.height * blockSize * (21-finalBlock),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget timeContainer() {
+    return Container(
+      child: Column(
+        children: <Widget> [
+          Container(
+            color: Colors.white,
+            height: MediaQuery.of(context).size.height * 2*blockSize,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.7,
+            color: Colors.white,
+            child: ListView(
+              controller: _controller1,
+              scrollDirection: Axis.vertical,
+              children: <Widget>[
+                for(int i = 0; i < timeInterval.length; i++)
+                individualTimeBlock(i),
+              ],
+            ),
+          ),
+        ],
+      ),
+      alignment: Alignment.topLeft,
+      color: Colors.white,
+      width: MediaQuery.of(context).size.width * 0.15,
+      height: MediaQuery.of(context).size.height,
+    );
+  }
+
+  Widget daysContainer() {
+    return Container(
+      width: MediaQuery.of(context).size.width * (1- 0.15),
+      height: MediaQuery.of(context).size.height,
+      child: Stack(
+        children: <Widget>[
+          ListView(
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              for(int i = 0 ; i < daysList.length ; i ++)
+               dayContainer(i),
+            ],
+          ),
+         Container(
+           child: ListView(
+            controller: _controller2,
+            scrollDirection: Axis.vertical,
+            children: <Widget>[
+               Container(
+                 color: Colors.blue.withOpacity(0),
+                 width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * blockSize * 21,
+               ),
+            ],
+          ),
+            margin: EdgeInsets.fromLTRB(0, 55, 0, 0),
+            color: Colors.black.withOpacity(0),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget dayContainer(int i){
     Color color1;
     Color color2;
 
@@ -217,56 +332,10 @@ class MySchedulePageState extends State<MySchedulePage>   {
     return Container(
       child: Column(
         children: <Widget>[
-          Container(
-            child: Row (
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      convertWeekDay(daysList[i].weekday),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF444444),
-                          fontSize: 20
-                      ),
-                    ),
-                    Text(
-                      daysList[i].day.toString() + convertMonth(daysList[i].month),
-                      style: TextStyle(
-                          color: Color(0xFF666666),
-                          fontSize: 13
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            color: color1,
-            height: MediaQuery.of(context).size.height * 2*blockSize,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.7,
-            color: color2,
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              controller: controllers[i],
-              children: <Widget>[
-                for(int j = 0; j < widget.talkList.length; j++)
-                  if(daysList[i].day == widget.talkList[j].dateInitial.day && widget.talkList[j].selected)
-                    placeBlocks(i, j, color2, Color.fromARGB(255,247,220,222)),
-                Container(
-                  color: Colors.black.withOpacity(0),
-                  height:MediaQuery.of(context).size.height * blockSize * (21-finalBlock),
-                ),
-              ],
-            ),
-          ),
+          dayHeaderContainer(i, color1),
+          blockContainer(i, color2),
         ],
       ),
-      
       alignment: Alignment.topLeft,
       color: color2,
       width: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width * 0.15)) * 0.3333,
@@ -276,76 +345,14 @@ class MySchedulePageState extends State<MySchedulePage>   {
   @override
   Widget build(BuildContext context) {
     return Container(
-            height: MediaQuery.of(context).size.height * 0.92,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(
-                  child: Column(
-                    children: <Widget> [
-                      Container(
-                        color: Colors.white,
-                        height: MediaQuery.of(context).size.height * 2*blockSize,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.7,
-                        color: Colors.white,
-                        child: ListView(
-                          controller: _controller1,
-                          scrollDirection: Axis.vertical,
-                          children: <Widget>[
-                            for(int i = 0; i < timeInterval.length; i++)
-                            displayTime(i),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  alignment: Alignment.topLeft,
-                  color: Colors.white,
-                  width: MediaQuery.of(context).size.width * 0.15,
-                  height: MediaQuery.of(context).size.height,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * (1- 0.15),
-                  height: MediaQuery.of(context).size.height,
-                  child: Stack(
-                    children: <Widget>[
-                      ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: <Widget>[
-                          for(int i = 0 ; i < daysList.length ; i ++)
-                           displaySchedule(i),
-                        ],
-                      ),
-                     Container(
-                       child: ListView(
-                        controller: _controller2,
-                        scrollDirection: Axis.vertical,
-                        children: <Widget>[
-                           Container(
-                             color: Colors.blue.withOpacity(0),
-                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * blockSize * 21,
-                           ),
-                        ],
-                      ),
-                        margin: EdgeInsets.fromLTRB(0, 55, 0, 0),
-                        color: Colors.black.withOpacity(0),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
-                      ),
-                    ],
-                  ),
-                  
-                ),
-                
-              ],
-              
-            )
-            
-        );
-
+      height: MediaQuery.of(context).size.height * 0.92,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          timeContainer(),
+          daysContainer(),
+        ],
+      )
+    );
   }
 }
