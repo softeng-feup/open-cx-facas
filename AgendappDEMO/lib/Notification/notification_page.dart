@@ -21,13 +21,13 @@ class _NotificationPageState extends State<NotificationPage> {
   final NotificationPlugin _notificationPlugin = NotificationPlugin();
   Future<List<PendingNotificationRequest>> notificationFuture;
 
-  final _formKey = GlobalKey<FormState>();
-
   @override
   void initState(){
     super.initState();
     notificationFuture = _notificationPlugin.getScheduleNotifications();
+
     generateAllNotifications();
+    refreshNotification();
   }
 
   @override
@@ -118,26 +118,46 @@ class _NotificationPageState extends State<NotificationPage> {
   }
 
   //create a notification
-  createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) {
+  Future<void> createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) async{
+
     final title = titleTalk;
     final description = descriptionTalk;
     final time = timeTalk;
-    final day = dayTalk; //to be used when i integrate weekly notification
-    print(title + ' ' + description);
-    print(time);
-    print(day);
-    final notificationData = NotificationData(title, description,time); //todo change to weekly
-    Navigator.of(context).pop(notificationData);
+    final day = dayTalk; //todo to be used when i integrate weekly notification
+
+    final notificationData = new NotificationData(title, description,time); //todo change to weekly
+    if(notificationData != null){
+      print('nulo');
+      final notificationList = await _notificationPlugin.getScheduleNotifications();
+      int id =0;
+      for(var i=0; i< 100; i++){
+        bool exists =_notificationPlugin.checkIfIdExists(notificationList,i);
+        if(!exists){
+          id=i;
+        }
+      }
+      await _notificationPlugin.showDailyAtTime( //todo change to weekly at time
+          notificationData.time,
+          id,
+          notificationData.title,
+          notificationData.description
+      );
+      refreshNotification();
+    }
+
   }
 
   //generate all talk notifications
   void generateAllNotifications() {
-    print(widget.talkList);
-
+    int i=0;
     widget.talkList.forEach((element) =>({
-      if(element.selected && element.notify)
-        createTalkNotification(Time(element.dateInitial.hour, element.dateInitial.minute), Day(element.dateInitial.day), element.name, element.information)
-    }));
+      if(element.selected && element.notify){
+
+        _notificationPlugin.showDailyAtTime(Time(element.dateInitial.hour, element.dateInitial.minute),i++, element.name, element.information)
+      }
+      //createTalkNotification(Time(element.dateInitial.hour, element.dateInitial.minute), Day(element.dateInitial.day), element.name, element.information)
+    }
+    ));
   }
 
 }

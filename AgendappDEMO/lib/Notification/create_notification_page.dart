@@ -90,7 +90,7 @@ class _CreateNotificationPageState extends State<CreateNotificationPage> {
       final time = Time(selectedTime.hour,selectedTime.minute);
 
       final notificationData = NotificationData(title, description, time);
-      Navigator.of(context).pop(notificationData);
+      //Navigator.of(context).pop(notificationData);
   }
 
 }
