@@ -4,6 +4,8 @@ class NotificationData{
   String title;
   String description;
   Time time;
+  //Day day;
 
   NotificationData(this.title,this.description,this.time);
+  
 }

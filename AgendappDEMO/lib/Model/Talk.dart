@@ -10,12 +10,13 @@ class Talk {
   String name;
   String information;
   bool selected;
+  bool notify;
   List<String> speakers = new List<String>();
   String location = "";
   List<ThemeTalk> themes = new List<ThemeTalk>();
 
   Talk(this.dateInitial, this.dateFinal, this.name, this.information,
-      this.location, this.selected,  this.speakers, this.themes);
+      this.location, this.selected, this.notify,this.speakers, this.themes);
 
   void addSpeaker(String speaker){
 

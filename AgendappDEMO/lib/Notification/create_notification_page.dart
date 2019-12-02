@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_login_page/Model/Talk.dart';
 
 import 'custom_wide_flat_button.dart';
 import 'notification_data.dart';
@@ -11,6 +12,7 @@ class CreateNotificationPage extends StatefulWidget {
 }
 
 class _CreateNotificationPageState extends State<CreateNotificationPage> {
+
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
   TimeOfDay selectedTime = TimeOfDay.now();
@@ -90,16 +92,6 @@ class _CreateNotificationPageState extends State<CreateNotificationPage> {
       Navigator.of(context).pop(notificationData);
   }
 
-  //* create notification function
-  void createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) { //e so estupido nao poder user os mesmos nomes mas ok...
-    final title = titleTalk;
-    final description = descriptionTalk;
-    final time = timeTalk;
-    final day = dayTalk; //to be used when i integrate weekly notification
-
-    final notificationData = NotificationData(title, description, time);
-    Navigator.of(context).pop(notificationData);
-  }
 }
 
 class CustomInputField extends StatelessWidget {

@@ -114,6 +114,7 @@ class _AllTalkPageState extends State<AllTalkPage> with TickerProviderStateMixin
         onChanged: (val) {
           setState(() {
             talk.selected = val;
+            talk.notify = val;
           });
         },
       ),

@@ -18,6 +18,13 @@ class MyAccountPage extends StatefulWidget {
 final List<ThemeTalk> interests = [allThemes[1], allThemes[2], allThemes[3]];
 
 class MyAccountPageState extends State<MyAccountPage> {
+
+  @override
+  void initState(){
+    super.initState();
+    print(widget.talkList);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,7 +148,7 @@ class MyAccountPageState extends State<MyAccountPage> {
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute<Null>(builder: (BuildContext context) {
-                  return NotificationPage();
+                  return NotificationPage(talkList: this.widget.talkList);
                 }));
               },
               child: Row(

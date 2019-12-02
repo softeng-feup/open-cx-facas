@@ -1,24 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Notification/create_notification_page.dart';
 import 'package:flutter_login_page/Notification/custom_wide_flat_button.dart';
 import 'package:flutter_login_page/Notification/notification_data.dart';
 import 'package:flutter_login_page/Notification/notification_plugin.dart';
 
 class NotificationPage extends StatefulWidget {
+  final List<Talk> talkList;
+
+  const NotificationPage({Key key, this.talkList}) : super(key: key);
+
   @override
   _NotificationPageState createState() => _NotificationPageState();
 }
 
 class _NotificationPageState extends State<NotificationPage> {
+
   final NotificationPlugin _notificationPlugin = NotificationPlugin();
   Future<List<PendingNotificationRequest>> notificationFuture;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState(){
     super.initState();
     notificationFuture = _notificationPlugin.getScheduleNotifications();
+    generateAllNotifications();
   }
 
   @override
@@ -107,6 +116,30 @@ class _NotificationPageState extends State<NotificationPage> {
       refreshNotification();
     }
   }
+
+  //create a notification
+  createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) {
+    final title = titleTalk;
+    final description = descriptionTalk;
+    final time = timeTalk;
+    final day = dayTalk; //to be used when i integrate weekly notification
+    print(title + ' ' + description);
+    print(time);
+    print(day);
+    final notificationData = NotificationData(title, description,time); //todo change to weekly
+    Navigator.of(context).pop(notificationData);
+  }
+
+  //generate all talk notifications
+  void generateAllNotifications() {
+    print(widget.talkList);
+
+    widget.talkList.forEach((element) =>({
+      if(element.selected && element.notify)
+        createTalkNotification(Time(element.dateInitial.hour, element.dateInitial.minute), Day(element.dateInitial.day), element.name, element.information)
+    }));
+  }
+
 }
 
 class NotificationTile extends StatelessWidget{
