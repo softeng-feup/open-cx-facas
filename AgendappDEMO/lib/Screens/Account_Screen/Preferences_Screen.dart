@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/ThemeTalk.dart';
+import 'package:flutter_login_page/Model/User.dart';
 
 
 class PreferencesScreen extends StatefulWidget {
   final List<ThemeTalk> themesList;
+  final User user;
 
-  const PreferencesScreen({Key key, this.themesList}) : super(key: key);
+  const PreferencesScreen({Key key, this.themesList, this.user}) : super(key: key);
 
   @override
   MyPreferencesScreen createState() => MyPreferencesScreen();
@@ -36,6 +38,8 @@ class MyPreferencesScreen extends State<PreferencesScreen>   {
 
   Widget displayThemes(List<ThemeTalk> themes){
     return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.fromLTRB(17, 0, 17, 0),
       child: Wrap(
         crossAxisAlignment: WrapCrossAlignment.center,
         spacing: 10,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
+import 'package:flutter_login_page/Model/User.dart';
 import 'package:flutter_login_page/Screens/Login_Screen/login.dart';
 import 'package:flutter_login_page/Screens/MenuOpen.dart';
 import 'package:flutter_login_page/Screens/Account_Screen/Preferences_Screen.dart';
@@ -10,8 +11,9 @@ import 'package:flutter_login_page/Notification/notification_page.dart';
 class MyAccountPage extends StatefulWidget {
   final List<Talk> talkList;
   final List<ThemeTalk> themesList;
+  final User user;
 
-  const MyAccountPage({Key key, this.talkList, this.themesList}) : super(key: key);
+  const MyAccountPage({Key key, this.talkList, this.themesList, this.user}) : super(key: key);
 
   @override
   MyAccountPageState createState() => MyAccountPageState();
@@ -51,7 +53,7 @@ class MyAccountPageState extends State<MyAccountPage> {
               // ),
               child: CircleAvatar(
                 backgroundImage: NetworkImage(
-                    'https://yt3.ggpht.com/a/AGF-l791z2rgw2RhBFQ2vnnI3wuxwMdZSNXI3U1LgQ=s176-c-k-c0x00ffffff-no-rj-mo'),
+                  widget.user.photo),
                 radius: 60,
               ),
             ),
@@ -64,7 +66,7 @@ class MyAccountPageState extends State<MyAccountPage> {
               alignment: Alignment.center,
               color: Colors.grey[100],
               child: Text(
-                'Tiago Miller',
+                widget.user.name,
                 style: TextStyle(
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold,
@@ -80,7 +82,7 @@ class MyAccountPageState extends State<MyAccountPage> {
               alignment: Alignment.center,
               color: Colors.grey[100],
               child: Text(
-                'tigasmiller@gmail.com',
+                widget.user.email,
                 style: TextStyle(
                   fontSize: 20.0,
                 ),
@@ -113,7 +115,7 @@ class MyAccountPageState extends State<MyAccountPage> {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-                  return new PreferencesScreen(themesList: widget.themesList);
+                  return new PreferencesScreen(themesList: widget.themesList, user: user);
                 }));
               },
                 child: Container(

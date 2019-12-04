@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Model/ThemeTalk.dart';
-import 'package:flutter_login_page/Notification/notification_page.dart';
+import 'package:flutter_login_page/Model/User.dart';
 import 'package:flutter_login_page/Screens/Account_Screen/Account_Screen.dart';
 import 'package:flutter_login_page/Screens/Schedule_Screen/schedule_screen.dart';
 import 'package:flutter_login_page/Screens/All_Talks_Screen/AllTalks.dart';
@@ -11,12 +11,13 @@ final List<ThemeTalk> allThemes = [
   new ThemeTalk("Auto/Tech", Color(0xFF1E90FF)),
   new ThemeTalk("Sports", Color(0xFFFF0000)),
   new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
+  new ThemeTalk("Auto/Tech", Color(0xFF1E90FF)),
   new ThemeTalk("Pitch!", Color(0xFFFFA000)),
   new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
-  new ThemeTalk("Pitch!", Color(0xFFFFA000)),
+  new ThemeTalk("Sports", Color(0xFFFF0000)),
   new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
   new ThemeTalk("Pitch!", Color(0xFFFFA000)),
-  new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
+  new ThemeTalk("Auto/Tech", Color(0xFF1E90FF)),
   new ThemeTalk("Pitch!", Color(0xFFFFA000))
 ];
 
@@ -28,6 +29,10 @@ final List<String> speakers = [
   "Marcelo Rebelo de Sousa"
 ];
 
+final List<ThemeTalk> interests = [allThemes[1], allThemes[2], allThemes[3]];
+
+
+final user = new User("Tiago Miller", "tigasmiller@gmail.com", allThemes, "https://yt3.ggpht.com/a/AGF-l791z2rgw2RhBFQ2vnnI3wuxwMdZSNXI3U1LgQ=s176-c-k-c0x00ffffff-no-rj-mo");
 
 final List<Talk> _talkList = [
   new Talk(new DateTime(2019, 12, 8, 8, 0), new DateTime(2019, 12, 8, 9, 30), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", "Room 101", false, false, [speakers[0], speakers[3]], [allThemes[0]]),
@@ -96,7 +101,7 @@ class _MenuPageState extends State<MenuPage> {
   final List<Widget> _children = [
     MyHomePage(talkList: _talkList),
     MyAllTalksPage(talkList: _talkList),
-    MyAccountPage(talkList: _talkList, themesList: allThemes),
+    MyAccountPage(talkList: _talkList, themesList: allThemes, user: user),
     MySchedulePage(talkList: _talkList),
   ];
 
