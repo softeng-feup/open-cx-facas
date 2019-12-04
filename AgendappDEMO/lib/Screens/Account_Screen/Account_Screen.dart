@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Screens/Login_Screen/login.dart';
 import 'package:flutter_login_page/Screens/MenuOpen.dart';
+import 'package:flutter_login_page/Screens/Account_Screen/Preferences_Screen.dart';
 import 'package:flutter_login_page/Model/ThemeTalk.dart';
 import 'package:flutter_login_page/Components/displayAllThemes.dart';
 import 'package:flutter_login_page/Notification/notification_page.dart';
 
 class MyAccountPage extends StatefulWidget {
   final List<Talk> talkList;
+  final List<ThemeTalk> themesList;
 
-  const MyAccountPage({Key key, this.talkList}) : super(key: key);
+  const MyAccountPage({Key key, this.talkList, this.themesList}) : super(key: key);
 
   @override
   MyAccountPageState createState() => MyAccountPageState();
@@ -22,7 +24,8 @@ class MyAccountPageState extends State<MyAccountPage> {
   @override
   void initState(){
     super.initState();
-    print(widget.talkList);
+    // print(widget.talkList);
+    // print(widget.themesList);
   }
 
   @override
@@ -107,13 +110,20 @@ class MyAccountPageState extends State<MyAccountPage> {
                   ),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(right: 20.0),
-                child: Text(
-                  'Edit',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w100,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+                  return new PreferencesScreen(themesList: widget.themesList);
+                }));
+              },
+                child: Container(
+                  margin: const EdgeInsets.only(right: 20.0),
+                  child: Text(
+                    'Edit',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w100,
+                    ),
                   ),
                 ),
               ),
@@ -148,7 +158,7 @@ class MyAccountPageState extends State<MyAccountPage> {
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute<Null>(builder: (BuildContext context) {
-                  return NotificationPage(talkList: this.widget.talkList);
+                  return NotificationPage(talkList: widget.talkList);
                 }));
               },
               child: Row(

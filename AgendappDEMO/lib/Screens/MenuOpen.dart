@@ -96,7 +96,7 @@ class _MenuPageState extends State<MenuPage> {
   final List<Widget> _children = [
     MyHomePage(talkList: _talkList),
     MyAllTalksPage(talkList: _talkList),
-    MyAccountPage(talkList: _talkList),
+    MyAccountPage(talkList: _talkList, themesList: allThemes),
     MySchedulePage(talkList: _talkList),
   ];
 
