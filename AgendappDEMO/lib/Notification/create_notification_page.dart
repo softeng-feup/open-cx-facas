@@ -89,8 +89,9 @@ class _CreateNotificationPageState extends State<CreateNotificationPage> {
       final description = _descriptionController.text;
       final time = Time(selectedTime.hour,selectedTime.minute);
 
-      final notificationData = NotificationData(title, description, time);
+      //final notificationData = NotificationData(title, description, time,);
       //Navigator.of(context).pop(notificationData);
+    //todo this is not used anymore erase pls eventually
   }
 
 }

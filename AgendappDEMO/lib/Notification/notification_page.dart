@@ -6,6 +6,7 @@ import 'package:flutter_login_page/Notification/create_notification_page.dart';
 import 'package:flutter_login_page/Notification/custom_wide_flat_button.dart';
 import 'package:flutter_login_page/Notification/notification_data.dart';
 import 'package:flutter_login_page/Notification/notification_plugin.dart';
+import 'package:flutter_login_page/Screens/Talk%20Screen/talkScreen.dart';
 
 class NotificationPage extends StatefulWidget {
   final List<Talk> talkList;
@@ -68,12 +69,6 @@ class _NotificationPageState extends State<NotificationPage> {
               );
             },
           ),
-          CustomWideFlatButton(
-            onPressed: navigateToNotificationCreation,
-            backgroundColor: Colors.blue.shade300,
-            foregroundColor: Colors.blue.shade900,
-            isRoundedAtBottom: false,
-          )
         ],
       ),
       ),
@@ -121,11 +116,13 @@ class _NotificationPageState extends State<NotificationPage> {
   Future<void> createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) async{
 
     final title = titleTalk;
-    final description = descriptionTalk;
+    //final description = descriptionTalk; //it will make a sting with day and hour
     final time = timeTalk;
     final day = dayTalk; //todo to be used when i integrate weekly notification
+    final description = 'Day: Hour: ';
 
-    final notificationData = new NotificationData(title, description,time); //todo change to weekly
+
+    final notificationData = new NotificationData(title, description,time,day); //todo change to weekly
     if(notificationData != null){
       print('nulo');
       final notificationList = await _notificationPlugin.getScheduleNotifications();
@@ -136,8 +133,9 @@ class _NotificationPageState extends State<NotificationPage> {
           id=i;
         }
       }
-      await _notificationPlugin.showDailyAtTime( //todo change to weekly at time
+      await _notificationPlugin.showWeeklyAtDayTime( //todo change to weekly at time
           notificationData.time,
+          notificationData.day,
           id,
           notificationData.title,
           notificationData.description
@@ -152,8 +150,10 @@ class _NotificationPageState extends State<NotificationPage> {
     int i=0;
     widget.talkList.forEach((element) =>({
       if(element.selected && element.notify){
-
-        _notificationPlugin.showDailyAtTime(Time(element.dateInitial.hour, element.dateInitial.minute),i++, element.name, element.information)
+        //todo convert time
+        //todo change id
+        _notificationPlugin.showWeeklyAtDayTime(Time(element.dateInitial.hour, element.dateInitial.minute),Day(element.dateInitial.day),i++, element.name,
+            ("Date: " + element.dateInitial.month.toString() + "/" + element.dateInitial.day.toString() + " Hour: " + element.dateInitial.hour.toString() + ":" + element.dateInitial.minute.toString() ))
       }
       //createTalkNotification(Time(element.dateInitial.hour, element.dateInitial.minute), Day(element.dateInitial.day), element.name, element.information)
     }
