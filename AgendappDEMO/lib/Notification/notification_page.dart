@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Notification/notification_data.dart';
@@ -95,47 +96,53 @@ class _NotificationPageState extends State<NotificationPage> {
   }
 
   //create a notification
-  Future<void> createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) async{
+  Future<void> createTalkNotification( Talk talk/*Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk*/) async{
 
-    final title = titleTalk;
-    final time = timeTalk;
-    final day = dayTalk;
-    final description = 'Day: Hour: ';
-
+    final title = talk.name;
+    final description = weakToString(talk.dateInitial.weekday.toString()) + " " +
+      talk.dateInitial.day.toString() + " " + monthToString(talk.dateInitial.month.toString()) + " - " +
+        hourToString(talk.dateInitial.hour.toString())+ "h" + minToString(talk.dateFinal.minute.toString());
+    final oldTime= talk.dateInitial;
+    final newTime= talk.dateInitial.subtract(new Duration(minutes: 15));
+    final time = Time(newTime.hour,newTime.minute);
+    final day= Day(talk.dateInitial.day);
 
     final notificationData = new NotificationData(title, description,time,day); //todo change to weekly
-    if(notificationData != null){
-      print('nulo');
+
+    //reset time bc idk if the element is passed by reference
+    talk.dateInitial = oldTime;
+
+    if(notificationData != null) {
       final notificationList = await _notificationPlugin.getScheduleNotifications();
-      int id =0;
-      for(var i=0; i< 100; i++){
-        bool exists =_notificationPlugin.checkIfIdExists(notificationList,i);
-        if(!exists){
-          id=i;
-        }
+      int id = talk.id;
+      bool exists = _notificationPlugin.checkIfIdExists(notificationList, id);
+      if (exists) {
+        return "cant create noptification";
       }
+    }
       await _notificationPlugin.showWeeklyAtDayTime(
           notificationData.time,
           notificationData.day,
-          id,
+          talk.id,
           notificationData.title,
           notificationData.description
       );
       refreshNotification();
     }
 
-  }
-
   //generate all talk notifications
   void generateAllNotifications() {
     int i=0;
     widget.talkList.forEach((element) =>({
       if(element.selected && element.notify){
+        //todo
         //element.dateInitial.subtract(new Duration(minutes: 15)) //convert time //esta linguagem e so autista...
-        _notificationPlugin.showWeeklyAtDayTime(Time(element.dateInitial.hour, element.dateInitial.minute),Day(element.dateInitial.day),element.id, element.name,
+        _notificationPlugin.showWeeklyAtDayTime(
+            Time(element.dateInitial.hour, element.dateInitial.minute), //time
+            Day(element.dateInitial.day),element.id,  //day
+            element.name, //id
             (weakToString(element.dateInitial.weekday.toString()) +" "+ element.dateInitial.day.toString() + " " +monthToString(element.dateInitial.month.toString())  + " - " + hourToString(element.dateInitial.hour.toString()) + "h" + minToString(element.dateInitial.minute.toString()) ))
       }
-      //createTalkNotification(Time(element.dateInitial.hour, element.dateInitial.minute), Day(element.dateInitial.day), element.name, element.information)
     }
     ));
   }
