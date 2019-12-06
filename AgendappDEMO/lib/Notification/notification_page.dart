@@ -26,7 +26,6 @@ class _NotificationPageState extends State<NotificationPage> {
   void initState(){
     super.initState();
     notificationFuture = _notificationPlugin.getScheduleNotifications();
-    print(globals.generated);
     if(!globals.generated){
       generateAllNotifications();
       globals.generated=true;
@@ -81,6 +80,11 @@ class _NotificationPageState extends State<NotificationPage> {
   //erase notification
   Future<void> dismissNotification(int id)async{
     await _notificationPlugin.cancelNotifications(id);
+    widget.talkList.forEach((element)=>{
+      if(element.id == id){
+        element.notify=false
+      }
+    });
     refreshNotification();
   }
   //refresh notification list
@@ -94,9 +98,8 @@ class _NotificationPageState extends State<NotificationPage> {
   Future<void> createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) async{
 
     final title = titleTalk;
-    //final description = descriptionTalk; //it will make a sting with day and hour
     final time = timeTalk;
-    final day = dayTalk; //todo to be used when i integrate weekly notification
+    final day = dayTalk;
     final description = 'Day: Hour: ';
 
 
@@ -111,7 +114,7 @@ class _NotificationPageState extends State<NotificationPage> {
           id=i;
         }
       }
-      await _notificationPlugin.showWeeklyAtDayTime( //todo change to weekly at time
+      await _notificationPlugin.showWeeklyAtDayTime(
           notificationData.time,
           notificationData.day,
           id,
@@ -128,15 +131,95 @@ class _NotificationPageState extends State<NotificationPage> {
     int i=0;
     widget.talkList.forEach((element) =>({
       if(element.selected && element.notify){
-        //todo convert time
-        _notificationPlugin.showWeeklyAtDayTime(Time(element.dateInitial.hour, element.dateInitial.minute),Day(element.dateInitial.day),globals.notificationId++, element.name,
-            ("Date: " + element.dateInitial.month.toString() + "/" + element.dateInitial.day.toString() + " Hour: " + element.dateInitial.hour.toString() + ":" + element.dateInitial.minute.toString() ))
+        //element.dateInitial.subtract(new Duration(minutes: 15)) //convert time //esta linguagem e so autista...
+        _notificationPlugin.showWeeklyAtDayTime(Time(element.dateInitial.hour, element.dateInitial.minute),Day(element.dateInitial.day),element.id, element.name,
+            (weakToString(element.dateInitial.weekday.toString()) +" "+ element.dateInitial.day.toString() + " " +monthToString(element.dateInitial.month.toString())  + " - " + hourToString(element.dateInitial.hour.toString()) + "h" + minToString(element.dateInitial.minute.toString()) ))
       }
       //createTalkNotification(Time(element.dateInitial.hour, element.dateInitial.minute), Day(element.dateInitial.day), element.name, element.information)
     }
     ));
   }
+  String hourToString(String hourNum){
+    if(hourNum.length == 1)
+      return '0'+ hourNum;
+    return hourNum;
 
+  }
+
+  String minToString(String minNum){
+    if(minNum.length == 1 )
+      return '0'+minNum;
+    return minNum;
+  }
+
+  String weakToString(String weakNum){
+    switch(weakNum){
+      case "1":
+        return "Sun";
+        break;
+      case "2":
+        return "Mon";
+        break;
+      case "3":
+        return "Tue";
+        break;
+      case "4":
+        return "Wed";
+        break;
+      case "5":
+        return "Thu";
+        break;
+      case "6":
+        return "Fri";
+        break;
+      case "7":
+        return "Sat";
+        break;
+    }
+    return null;
+  }
+
+  String monthToString(String monthNum){
+    switch(monthNum){
+      case "1":
+        return "Jan";
+        break;
+      case "2":
+        return "Fev";
+        break;
+      case "3":
+        return "Mar";
+        break;
+      case "4":
+        return "Apr";
+        break;
+      case "5":
+        return "May";
+        break;
+      case "6":
+        return "Jun";
+        break;
+      case "7":
+        return "Jul";
+        break;
+      case "8":
+        return "Aug";
+        break;
+      case "9":
+        return "Sep";
+        break;
+      case "10":
+        return "Oct";
+        break;
+      case "11":
+        return "Nov";
+        break;
+      case "12":
+        return "Dec";
+        break;
+    }
+    return null;
+  }
 }
 
 class NotificationTile extends StatelessWidget{
@@ -152,6 +235,12 @@ class NotificationTile extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Card(
+      shape: StadiumBorder(
+        side: BorderSide(
+          color: Colors.black,
+          width: 2.0,
+        ),
+      ),
       child: ListTile(
         title: Text(notification.title),
         subtitle: Text(notification.body),

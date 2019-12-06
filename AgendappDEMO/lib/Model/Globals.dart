@@ -1,4 +1,5 @@
 library my_app.globals;
 
 bool generated = false;
-int notificationId= 1;
+
+int talkId = 0;
