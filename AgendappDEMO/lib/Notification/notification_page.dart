@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
-import 'package:flutter_login_page/Notification/create_notification_page.dart';
-import 'package:flutter_login_page/Notification/custom_wide_flat_button.dart';
 import 'package:flutter_login_page/Notification/notification_data.dart';
 import 'package:flutter_login_page/Notification/notification_plugin.dart';
-import 'package:flutter_login_page/Screens/Talk%20Screen/talkScreen.dart';
+
+
+import 'package:flutter_login_page/Model/Globals.dart' as globals;
 
 class NotificationPage extends StatefulWidget {
   final List<Talk> talkList;
@@ -26,8 +26,11 @@ class _NotificationPageState extends State<NotificationPage> {
   void initState(){
     super.initState();
     notificationFuture = _notificationPlugin.getScheduleNotifications();
-
-    generateAllNotifications();
+    print(globals.generated);
+    if(!globals.generated){
+      generateAllNotifications();
+      globals.generated=true;
+    }
     refreshNotification();
   }
 
@@ -86,31 +89,6 @@ class _NotificationPageState extends State<NotificationPage> {
       notificationFuture = _notificationPlugin.getScheduleNotifications();
     });
   }
-  
-  Future<void> navigateToNotificationCreation() async{
-    NotificationData notificationData = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => CreateNotificationPage(),
-      ),
-    );
-    if(notificationData != null){
-      final notificationList = await _notificationPlugin.getScheduleNotifications();
-      int id =0; 
-      for(var i=0; i< 100; i++){
-        bool exists =_notificationPlugin.checkIfIdExists(notificationList,i);
-        if(!exists){
-          id=i; 
-        }
-      }
-      await _notificationPlugin.showDailyAtTime( //todo change to weekly at time
-          notificationData.time,
-          id,
-          notificationData.title,
-          notificationData.description
-      );
-      refreshNotification();
-    }
-  }
 
   //create a notification
   Future<void> createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) async{
@@ -151,8 +129,7 @@ class _NotificationPageState extends State<NotificationPage> {
     widget.talkList.forEach((element) =>({
       if(element.selected && element.notify){
         //todo convert time
-        //todo change id
-        _notificationPlugin.showWeeklyAtDayTime(Time(element.dateInitial.hour, element.dateInitial.minute),Day(element.dateInitial.day),i++, element.name,
+        _notificationPlugin.showWeeklyAtDayTime(Time(element.dateInitial.hour, element.dateInitial.minute),Day(element.dateInitial.day),globals.notificationId++, element.name,
             ("Date: " + element.dateInitial.month.toString() + "/" + element.dateInitial.day.toString() + " Hour: " + element.dateInitial.hour.toString() + ":" + element.dateInitial.minute.toString() ))
       }
       //createTalkNotification(Time(element.dateInitial.hour, element.dateInitial.minute), Day(element.dateInitial.day), element.name, element.information)
