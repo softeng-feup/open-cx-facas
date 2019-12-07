@@ -160,7 +160,7 @@ class MyAccountPageState extends State<MyAccountPage> {
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute<Null>(builder: (BuildContext context) {
-                  return NotificationPage(talkList: widget.talkList);
+                  return NotificationPage(talkList: widget.talkList,talk: null);
                 }));
               },
               child: Row(

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Components/displayTime.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Components/displayContent.dart';
+import 'package:flutter_login_page/Notification/notification_page.dart';
 import 'package:intl/intl.dart';
+
+import 'package:flutter_login_page/Model/Globals.dart' as globals;
 
 class TalkPage extends StatefulWidget {
   final List<Talk> talkList;
@@ -122,6 +125,8 @@ class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
         onChanged: (val) {
           setState(() {
             talk.selected = val;
+            talk.notify = val;
+            NotificationPage(talkList: widget.talkList,talk: talk); //todo n funciona!!!
           });
         },
       ),

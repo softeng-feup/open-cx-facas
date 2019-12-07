@@ -6,16 +6,18 @@ import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Notification/notification_data.dart';
 import 'package:flutter_login_page/Notification/notification_plugin.dart';
 
-
 import 'package:flutter_login_page/Model/Globals.dart' as globals;
 
 class NotificationPage extends StatefulWidget {
-  final List<Talk> talkList;
 
-  const NotificationPage({Key key, this.talkList}) : super(key: key);
+  final List<Talk> talkList;
+  final Talk talk;
+
+  const NotificationPage({Key key, this.talkList,this.talk}) : super(key: key);
 
   @override
   _NotificationPageState createState() => _NotificationPageState();
+
 }
 
 class _NotificationPageState extends State<NotificationPage> {
@@ -23,13 +25,25 @@ class _NotificationPageState extends State<NotificationPage> {
   final NotificationPlugin _notificationPlugin = NotificationPlugin();
   Future<List<PendingNotificationRequest>> notificationFuture;
 
+  NotificationPlugin getNotificationPlugin(){
+    return this._notificationPlugin;
+  }
+
   @override
   void initState(){
     super.initState();
     notificationFuture = _notificationPlugin.getScheduleNotifications();
+
+    globals.notificationPluginGlobal = _notificationPlugin;
+
     if(!globals.generated){
+      print('gerei tudo');
       generateAllNotifications();
       globals.generated=true;
+    }
+    if(widget.talk != null){
+      print('criar nova notif');
+      createTalkNotification(widget.talk);
     }
     refreshNotification();
   }
@@ -96,11 +110,11 @@ class _NotificationPageState extends State<NotificationPage> {
   }
 
   //create a notification
-  Future<void> createTalkNotification( Talk talk/*Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk*/) async{
+  Future<void> createTalkNotification(Talk talk) async{
 
     final title = talk.name;
     final description = weakToString(talk.dateInitial.weekday.toString()) + " " +
-      talk.dateInitial.day.toString() + " " + monthToString(talk.dateInitial.month.toString()) + " - " +
+        talk.dateInitial.day.toString() + " " + monthToString(talk.dateInitial.month.toString()) + " - " +
         hourToString(talk.dateInitial.hour.toString())+ "h" + minToString(talk.dateFinal.minute.toString());
     final oldTime= talk.dateInitial;
     final newTime= talk.dateInitial.subtract(new Duration(minutes: 15));
@@ -120,15 +134,15 @@ class _NotificationPageState extends State<NotificationPage> {
         return "cant create noptification";
       }
     }
-      await _notificationPlugin.showWeeklyAtDayTime(
-          notificationData.time,
-          notificationData.day,
-          talk.id,
-          notificationData.title,
-          notificationData.description
-      );
-      refreshNotification();
-    }
+    await _notificationPlugin.showWeeklyAtDayTime(
+        notificationData.time,
+        notificationData.day,
+        talk.id,
+        notificationData.title,
+        notificationData.description
+    );
+    refreshNotification();
+  }
 
   //generate all talk notifications
   void generateAllNotifications() {
@@ -146,87 +160,7 @@ class _NotificationPageState extends State<NotificationPage> {
     }
     ));
   }
-  String hourToString(String hourNum){
-    if(hourNum.length == 1)
-      return '0'+ hourNum;
-    return hourNum;
 
-  }
-
-  String minToString(String minNum){
-    if(minNum.length == 1 )
-      return '0'+minNum;
-    return minNum;
-  }
-
-  String weakToString(String weakNum){
-    switch(weakNum){
-      case "1":
-        return "Sun";
-        break;
-      case "2":
-        return "Mon";
-        break;
-      case "3":
-        return "Tue";
-        break;
-      case "4":
-        return "Wed";
-        break;
-      case "5":
-        return "Thu";
-        break;
-      case "6":
-        return "Fri";
-        break;
-      case "7":
-        return "Sat";
-        break;
-    }
-    return null;
-  }
-
-  String monthToString(String monthNum){
-    switch(monthNum){
-      case "1":
-        return "Jan";
-        break;
-      case "2":
-        return "Fev";
-        break;
-      case "3":
-        return "Mar";
-        break;
-      case "4":
-        return "Apr";
-        break;
-      case "5":
-        return "May";
-        break;
-      case "6":
-        return "Jun";
-        break;
-      case "7":
-        return "Jul";
-        break;
-      case "8":
-        return "Aug";
-        break;
-      case "9":
-        return "Sep";
-        break;
-      case "10":
-        return "Oct";
-        break;
-      case "11":
-        return "Nov";
-        break;
-      case "12":
-        return "Dec";
-        break;
-    }
-    return null;
-  }
 }
 
 class NotificationTile extends StatelessWidget{
@@ -258,4 +192,87 @@ class NotificationTile extends StatelessWidget{
       ),
     );
   }
+}
+
+//utils
+String hourToString(String hourNum){
+  if(hourNum.length == 1)
+    return '0'+ hourNum;
+  return hourNum;
+
+}
+
+String minToString(String minNum){
+  if(minNum.length == 1 )
+    return '0'+minNum;
+  return minNum;
+}
+
+String weakToString(String weakNum){
+  switch(weakNum){
+    case "1":
+      return "Sun";
+      break;
+    case "2":
+      return "Mon";
+      break;
+    case "3":
+      return "Tue";
+      break;
+    case "4":
+      return "Wed";
+      break;
+    case "5":
+      return "Thu";
+      break;
+    case "6":
+      return "Fri";
+      break;
+    case "7":
+      return "Sat";
+      break;
+  }
+  return null;
+}
+
+String monthToString(String monthNum){
+  switch(monthNum){
+    case "1":
+      return "Jan";
+      break;
+    case "2":
+      return "Fev";
+      break;
+    case "3":
+      return "Mar";
+      break;
+    case "4":
+      return "Apr";
+      break;
+    case "5":
+      return "May";
+      break;
+    case "6":
+      return "Jun";
+      break;
+    case "7":
+      return "Jul";
+      break;
+    case "8":
+      return "Aug";
+      break;
+    case "9":
+      return "Sep";
+      break;
+    case "10":
+      return "Oct";
+      break;
+    case "11":
+      return "Nov";
+      break;
+    case "12":
+      return "Dec";
+      break;
+  }
+  return null;
 }
