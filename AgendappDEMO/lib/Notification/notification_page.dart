@@ -6,8 +6,6 @@ import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Notification/notification_data.dart';
 import 'package:flutter_login_page/Notification/notification_plugin.dart';
 
-import 'package:flutter_login_page/Model/Globals.dart' as globals;
-
 class NotificationPage extends StatefulWidget {
 
   final List<Talk> talkList;
@@ -33,16 +31,7 @@ class _NotificationPageState extends State<NotificationPage> {
     super.initState();
     notificationFuture = _notificationPlugin.getScheduleNotifications();
 
-    globals.notificationPluginGlobal = _notificationPlugin;
-
-    if(!globals.generated){
-      print('gerei tudo');
-      generateAllNotifications();
-      globals.generated=true;
-    }else{
-      print('dei update');
-      updateNotifications();
-    }
+    updateNotifications();
     refreshNotification();
   }
 
@@ -90,12 +79,13 @@ class _NotificationPageState extends State<NotificationPage> {
     );
   }
 
-  //erase notification
-  //erase notification
+  //erase notification for update
   Future<void> deleteNotification(int id)async{
     await _notificationPlugin.cancelNotifications(id);
     refreshNotification();
   }
+
+  //erase it and turn the flag off
   Future<void> dismissNotification(int id)async{
     await _notificationPlugin.cancelNotifications(id);
     widget.talkList.forEach((element)=>{
@@ -105,6 +95,7 @@ class _NotificationPageState extends State<NotificationPage> {
     });
     refreshNotification();
   }
+
   //reactivate notification
   Future<void> activateNotification(int id)async{
     Talk talk;
@@ -183,11 +174,9 @@ class _NotificationPageState extends State<NotificationPage> {
     }
     ));
   }
-
 }
 
 class NotificationTile extends StatelessWidget{
-
 
   const NotificationTile({
     Key key,
