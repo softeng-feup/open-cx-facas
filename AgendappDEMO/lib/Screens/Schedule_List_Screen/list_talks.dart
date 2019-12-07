@@ -126,7 +126,7 @@ class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
           setState(() {
             talk.selected = val;
             talk.notify = val;
-            NotificationPage(talkList: widget.talkList,talk: talk); //todo n funciona!!!
+            //NotificationPage(talkList: widget.talkList,talk: talk); //todo n funciona!!!
           });
         },
       ),

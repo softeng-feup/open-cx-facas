@@ -11,9 +11,8 @@ import 'package:flutter_login_page/Model/Globals.dart' as globals;
 class NotificationPage extends StatefulWidget {
 
   final List<Talk> talkList;
-  final Talk talk;
 
-  const NotificationPage({Key key, this.talkList,this.talk}) : super(key: key);
+  const NotificationPage({Key key, this.talkList}) : super(key: key);
 
   @override
   _NotificationPageState createState() => _NotificationPageState();
@@ -40,10 +39,9 @@ class _NotificationPageState extends State<NotificationPage> {
       print('gerei tudo');
       generateAllNotifications();
       globals.generated=true;
-    }
-    if(widget.talk != null){
-      print('criar nova notif');
-      createTalkNotification(widget.talk);
+    }else{
+      print('dei update');
+      updateNotifications();
     }
     refreshNotification();
   }
@@ -93,6 +91,11 @@ class _NotificationPageState extends State<NotificationPage> {
   }
 
   //erase notification
+  //erase notification
+  Future<void> deleteNotification(int id)async{
+    await _notificationPlugin.cancelNotifications(id);
+    refreshNotification();
+  }
   Future<void> dismissNotification(int id)async{
     await _notificationPlugin.cancelNotifications(id);
     widget.talkList.forEach((element)=>{
@@ -100,6 +103,18 @@ class _NotificationPageState extends State<NotificationPage> {
         element.notify=false
       }
     });
+    refreshNotification();
+  }
+  //reactivate notification
+  Future<void> activateNotification(int id)async{
+    Talk talk;
+    widget.talkList.forEach((element)=>{
+      if(element.id == id){
+        element.notify=true,
+        talk = element
+      }
+    });
+    createTalkNotification(talk);
     refreshNotification();
   }
   //refresh notification list
@@ -144,18 +159,26 @@ class _NotificationPageState extends State<NotificationPage> {
     refreshNotification();
   }
 
+  void updateNotifications() async{
+    //delete old notifications
+    final notificationList = await _notificationPlugin.getScheduleNotifications();
+    notificationList.forEach((notification) =>({
+      deleteNotification(notification.id)
+    }));
+    //create new notifications
+    widget.talkList.forEach((element) =>({
+        if(element.selected && element.notify){
+          createTalkNotification(element)
+        }
+      }
+    ));
+  }
+
   //generate all talk notifications
   void generateAllNotifications() {
-    int i=0;
     widget.talkList.forEach((element) =>({
       if(element.selected && element.notify){
-        //todo
-        //element.dateInitial.subtract(new Duration(minutes: 15)) //convert time //esta linguagem e so autista...
-        _notificationPlugin.showWeeklyAtDayTime(
-            Time(element.dateInitial.hour, element.dateInitial.minute), //time
-            Day(element.dateInitial.day),element.id,  //day
-            element.name, //id
-            (weakToString(element.dateInitial.weekday.toString()) +" "+ element.dateInitial.day.toString() + " " +monthToString(element.dateInitial.month.toString())  + " - " + hourToString(element.dateInitial.hour.toString()) + "h" + minToString(element.dateInitial.minute.toString()) ))
+        createTalkNotification(element)
       }
     }
     ));
@@ -164,10 +187,12 @@ class _NotificationPageState extends State<NotificationPage> {
 }
 
 class NotificationTile extends StatelessWidget{
+
+
   const NotificationTile({
     Key key,
     @required this.notification,
-    @required this.deleteNotification,
+    @required this.deleteNotification
 }): super(key: key);
 
   final PendingNotificationRequest notification;
