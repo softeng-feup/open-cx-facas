@@ -11,15 +11,10 @@ final List<ThemeTalk> allThemes = [
   new ThemeTalk("Auto/Tech", Color(0xFF1E90FF)),
   new ThemeTalk("Sports", Color(0xFFFF0000)),
   new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
-  new ThemeTalk("Auto/Tech", Color(0xFF1E90FF)),
   new ThemeTalk("Pitch!", Color(0xFFFFA000)),
-  new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
-  new ThemeTalk("Sports", Color(0xFFFF0000)),
-  new ThemeTalk("Deep Tech", Color(0xFF00CA00)),
-  new ThemeTalk("Pitch!", Color(0xFFFFA000)),
-  new ThemeTalk("Auto/Tech", Color(0xFF1E90FF)),
-  new ThemeTalk("Pitch!", Color(0xFFFFA000))
 ];
+
+final List<ThemeTalk> userThemes = [];
 
 final List<String> speakers = [
   "Alexander Zosel",
@@ -32,7 +27,7 @@ final List<String> speakers = [
 final List<ThemeTalk> interests = [allThemes[1], allThemes[2], allThemes[3]];
 
 
-final user = new User("Tiago Miller", "tigasmiller@gmail.com", allThemes, "https://yt3.ggpht.com/a/AGF-l791z2rgw2RhBFQ2vnnI3wuxwMdZSNXI3U1LgQ=s176-c-k-c0x00ffffff-no-rj-mo");
+final user = new User("Tiago Miller", "tigasmiller@gmail.com", userThemes, "https://yt3.ggpht.com/a/AGF-l791z2rgw2RhBFQ2vnnI3wuxwMdZSNXI3U1LgQ=s176-c-k-c0x00ffffff-no-rj-mo");
 
 final List<Talk> _talkList = [
   new Talk(new DateTime(2019, 12, 8, 8, 0), new DateTime(2019, 12, 8, 9, 30), "Drones and food delivery: A marriage made in Heaven", "There are so many food delivery unicorns, but could getting your food delivery be bad for the planet?", "Room 101", false, false, [speakers[0], speakers[3]], [allThemes[0]]),

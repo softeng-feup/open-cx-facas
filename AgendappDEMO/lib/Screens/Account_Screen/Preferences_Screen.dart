@@ -14,27 +14,52 @@ class PreferencesScreen extends StatefulWidget {
 }
 class MyPreferencesScreen extends State<PreferencesScreen>   {
 
+  bool containsTheme(ThemeTalk theme) {
+    for(int i = 0 ; i < widget.user.preferredThemes.length; i++)
+      if(widget.user.preferredThemes[i].name == theme.name)
+        return true;
+    return false;
+  }
+
   Widget displayThemeTalk(ThemeTalk theme) {
-  return Container(
-    padding: const EdgeInsets.all(8.0),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      border: Border.all(width: 2, color: theme.color),
-      borderRadius: BorderRadius.all(Radius.circular(5)),
-      boxShadow: [
-        BoxShadow(
-          color: Color(0x20000000), blurRadius: 5, offset: Offset(0, 3))
-        ]
+    Color themeColor;
+    if(containsTheme(theme)){
+      themeColor = theme.color;
+    }
+    else{
+      themeColor = Color(0x50000000);
+    }
+    
+    return GestureDetector(
+      onTap: () {
+        if(containsTheme(theme))
+          setState(() {
+            widget.user.preferredThemes.remove(theme);});
+        else
+          setState(() {
+            widget.user.preferredThemes.add(theme);});
+      },
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(width: 2, color: themeColor),
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x20000000), blurRadius: 5, offset: Offset(0, 3))
+            ]
+          ),
+        child: Text(
+          theme.name,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: themeColor,
+          )
+        ),
       ),
-    child: Text(
-      theme.name,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: theme.color,
-      )
-    ),
-  );
-}
+    );
+  }
 
   Widget displayThemes(List<ThemeTalk> themes){
     return Container(
