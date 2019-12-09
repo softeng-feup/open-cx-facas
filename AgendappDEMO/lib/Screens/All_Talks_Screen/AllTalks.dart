@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
+import 'package:flutter_login_page/Screens/Recommended_Talks_Screen/Recommended_Talks.dart';
 
 import 'list_all_talks.dart';
 
@@ -25,7 +26,7 @@ class _MyAllTalksPageState extends State<MyAllTalksPage> {
               child: AllTalkPage(talkList: widget.talkList),
             )
           ],
-        )
+        ),
     );
   }
 }
