@@ -19,10 +19,6 @@ class MyAccountPage extends StatefulWidget {
   MyAccountPageState createState() => MyAccountPageState();
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 class MyAccountPageState extends State<MyAccountPage> {
 
   @override
