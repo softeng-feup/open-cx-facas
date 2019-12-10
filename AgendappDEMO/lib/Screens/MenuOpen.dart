@@ -40,7 +40,7 @@ final List<Talk> _talkList = [
   new Talk(globals.talkId++,new DateTime(2019, 12, 8, 14, 0), new DateTime(2019, 12, 8, 15, 0),
       "Building the next great ad empire",
       "One of the most prominent names in the advertising industry outlines his big vision for the industry.",
-      "Room 103", false,false, [speakers[3], speakers[4]], allThemes),
+      "Room 103", false,false, [speakers[3], speakers[3]], allThemes),
   new Talk(globals.talkId++,new DateTime(2019, 12, 8, 16, 0), new DateTime(2019, 12, 8, 17, 0),
       "Welcome to the future of mobile robots",
       "A pioneering company at the cutting edge of robotics showcases its vision for the future of robotic technology that interacts with the world.",
@@ -52,7 +52,7 @@ final List<Talk> _talkList = [
   new Talk(globals.talkId++,new DateTime(2019, 12, 10, 16, 0), new DateTime(2019, 12, 10, 17, 30),
       "Learn to win",
       "DJI presents a ground-breaking educational robot that helps to understand science, programming and more through captivating gameplay modes and intelligent features.",
-      "Room 106", true,true, [speakers[0]], [allThemes[4]]),
+      "Room 106", true,true, [speakers[0]], [allThemes[3]]),
 ];
 
 
