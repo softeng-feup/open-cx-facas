@@ -4,6 +4,7 @@ import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Components/displayContent.dart';
 import 'package:intl/intl.dart';
 
+
 class TalkPage extends StatefulWidget {
   final List<Talk> talkList;
 
@@ -34,7 +35,6 @@ class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
 
     List<Talk> selectedTalks = new List<Talk>();
 
@@ -122,6 +122,8 @@ class _TalkPageState extends State<TalkPage> with TickerProviderStateMixin {
         onChanged: (val) {
           setState(() {
             talk.selected = val;
+            talk.notify = val;
+            //NotificationPage(talkList: widget.talkList,talk: talk); //todo n funciona!!!
           });
         },
       ),

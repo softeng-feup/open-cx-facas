@@ -106,7 +106,7 @@ class MyPreferencesScreen extends State<PreferencesScreen>   {
                 textAlign: TextAlign.center,
               ),
             ),
-          displayThemes(widget.themesList),
+          displayThemes(widget.user.preferredThemes),
           ],
         ),
       ),

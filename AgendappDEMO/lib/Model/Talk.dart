@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'ThemeTalk.dart';
 
 class Talk {
+  int id; //eventually can be changed with id from the database
   DateTime dateInitial;
   DateTime dateFinal;
   String name;
@@ -15,7 +16,7 @@ class Talk {
   String location = "";
   List<ThemeTalk> themes = new List<ThemeTalk>();
 
-  Talk(this.dateInitial, this.dateFinal, this.name, this.information,
+  Talk(this.id,this.dateInitial, this.dateFinal, this.name, this.information,
       this.location, this.selected, this.notify,this.speakers, this.themes);
 
   void addSpeaker(String speaker){
@@ -30,4 +31,7 @@ class Talk {
     return themes[0].color;
   }
 
+  void turnOffNotification(){
+    this.notify = false;
+  }
 }

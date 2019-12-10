@@ -1,19 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
-import 'package:flutter_login_page/Notification/create_notification_page.dart';
-import 'package:flutter_login_page/Notification/custom_wide_flat_button.dart';
 import 'package:flutter_login_page/Notification/notification_data.dart';
 import 'package:flutter_login_page/Notification/notification_plugin.dart';
 
 class NotificationPage extends StatefulWidget {
+
   final List<Talk> talkList;
 
   const NotificationPage({Key key, this.talkList}) : super(key: key);
 
   @override
   _NotificationPageState createState() => _NotificationPageState();
+
 }
 
 class _NotificationPageState extends State<NotificationPage> {
@@ -21,12 +22,16 @@ class _NotificationPageState extends State<NotificationPage> {
   final NotificationPlugin _notificationPlugin = NotificationPlugin();
   Future<List<PendingNotificationRequest>> notificationFuture;
 
+  NotificationPlugin getNotificationPlugin(){
+    return this._notificationPlugin;
+  }
+
   @override
   void initState(){
     super.initState();
     notificationFuture = _notificationPlugin.getScheduleNotifications();
 
-    generateAllNotifications();
+    updateNotifications();
     refreshNotification();
   }
 
@@ -68,21 +73,39 @@ class _NotificationPageState extends State<NotificationPage> {
               );
             },
           ),
-          CustomWideFlatButton(
-            onPressed: navigateToNotificationCreation,
-            backgroundColor: Colors.blue.shade300,
-            foregroundColor: Colors.blue.shade900,
-            isRoundedAtBottom: false,
-          )
         ],
       ),
       ),
     );
   }
 
-  //erase notification
+  //erase notification for update
+  Future<void> deleteNotification(int id)async{
+    await _notificationPlugin.cancelNotifications(id);
+    refreshNotification();
+  }
+
+  //erase it and turn the flag off
   Future<void> dismissNotification(int id)async{
     await _notificationPlugin.cancelNotifications(id);
+    widget.talkList.forEach((element)=>{
+      if(element.id == id){
+        element.notify=false
+      }
+    });
+    refreshNotification();
+  }
+
+  //reactivate notification
+  Future<void> activateNotification(int id)async{
+    Talk talk;
+    widget.talkList.forEach((element)=>{
+      if(element.id == id){
+        element.notify=true,
+        talk = element
+      }
+    });
+    createTalkNotification(talk);
     refreshNotification();
   }
   //refresh notification list
@@ -91,82 +114,74 @@ class _NotificationPageState extends State<NotificationPage> {
       notificationFuture = _notificationPlugin.getScheduleNotifications();
     });
   }
-  
-  Future<void> navigateToNotificationCreation() async{
-    NotificationData notificationData = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => CreateNotificationPage(),
-      ),
-    );
-    if(notificationData != null){
-      final notificationList = await _notificationPlugin.getScheduleNotifications();
-      int id =0; 
-      for(var i=0; i< 100; i++){
-        bool exists =_notificationPlugin.checkIfIdExists(notificationList,i);
-        if(!exists){
-          id=i; 
-        }
-      }
-      await _notificationPlugin.showDailyAtTime( //todo change to weekly at time
-          notificationData.time,
-          id,
-          notificationData.title,
-          notificationData.description
-      );
-      refreshNotification();
-    }
-  }
 
   //create a notification
-  Future<void> createTalkNotification(Time timeTalk,Day dayTalk,String titleTalk,String descriptionTalk) async{
+  Future<void> createTalkNotification(Talk talk) async{
 
-    final title = titleTalk;
-    final description = descriptionTalk;
-    final time = timeTalk;
-    final day = dayTalk; //todo to be used when i integrate weekly notification
+    final title = talk.name;
+    final description = weakToString(talk.dateInitial.weekday.toString()) + " " +
+        talk.dateInitial.day.toString() + " " + monthToString(talk.dateInitial.month.toString()) + " - " +
+        hourToString(talk.dateInitial.hour.toString())+ "h" + minToString(talk.dateFinal.minute.toString());
+    final oldTime= talk.dateInitial;
+    final newTime= talk.dateInitial.subtract(new Duration(minutes: 15));
+    final time = Time(newTime.hour,newTime.minute);
+    final day= Day(talk.dateInitial.day);
 
-    final notificationData = new NotificationData(title, description,time); //todo change to weekly
-    if(notificationData != null){
-      print('nulo');
+    final notificationData = new NotificationData(title, description,time,day); //todo change to weekly
+
+    //reset time bc idk if the element is passed by reference
+    talk.dateInitial = oldTime;
+
+    if(notificationData != null) {
       final notificationList = await _notificationPlugin.getScheduleNotifications();
-      int id =0;
-      for(var i=0; i< 100; i++){
-        bool exists =_notificationPlugin.checkIfIdExists(notificationList,i);
-        if(!exists){
-          id=i;
+      int id = talk.id;
+      bool exists = _notificationPlugin.checkIfIdExists(notificationList, id);
+      if (exists) {
+        return "cant create noptification";
+      }
+    }
+    await _notificationPlugin.showWeeklyAtDayTime(
+        notificationData.time,
+        notificationData.day,
+        talk.id,
+        notificationData.title,
+        notificationData.description
+    );
+    refreshNotification();
+  }
+
+  void updateNotifications() async{
+    //delete old notifications
+    final notificationList = await _notificationPlugin.getScheduleNotifications();
+    notificationList.forEach((notification) =>({
+      deleteNotification(notification.id)
+    }));
+    //create new notifications
+    widget.talkList.forEach((element) =>({
+        if(element.selected && element.notify){
+          createTalkNotification(element)
         }
       }
-      await _notificationPlugin.showDailyAtTime( //todo change to weekly at time
-          notificationData.time,
-          id,
-          notificationData.title,
-          notificationData.description
-      );
-      refreshNotification();
-    }
-
+    ));
   }
 
   //generate all talk notifications
   void generateAllNotifications() {
-    int i=0;
     widget.talkList.forEach((element) =>({
       if(element.selected && element.notify){
-
-        _notificationPlugin.showDailyAtTime(Time(element.dateInitial.hour, element.dateInitial.minute),i++, element.name, element.information)
+        createTalkNotification(element)
       }
-      //createTalkNotification(Time(element.dateInitial.hour, element.dateInitial.minute), Day(element.dateInitial.day), element.name, element.information)
     }
     ));
   }
-
 }
 
 class NotificationTile extends StatelessWidget{
+
   const NotificationTile({
     Key key,
     @required this.notification,
-    @required this.deleteNotification,
+    @required this.deleteNotification
 }): super(key: key);
 
   final PendingNotificationRequest notification;
@@ -175,6 +190,12 @@ class NotificationTile extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Card(
+      shape: StadiumBorder(
+        side: BorderSide(
+          color: Colors.black,
+          width: 2.0,
+        ),
+      ),
       child: ListTile(
         title: Text(notification.title),
         subtitle: Text(notification.body),
@@ -185,4 +206,87 @@ class NotificationTile extends StatelessWidget{
       ),
     );
   }
+}
+
+//utils
+String hourToString(String hourNum){
+  if(hourNum.length == 1)
+    return '0'+ hourNum;
+  return hourNum;
+
+}
+
+String minToString(String minNum){
+  if(minNum.length == 1 )
+    return '0'+minNum;
+  return minNum;
+}
+
+String weakToString(String weakNum){
+  switch(weakNum){
+    case "1":
+      return "Sun";
+      break;
+    case "2":
+      return "Mon";
+      break;
+    case "3":
+      return "Tue";
+      break;
+    case "4":
+      return "Wed";
+      break;
+    case "5":
+      return "Thu";
+      break;
+    case "6":
+      return "Fri";
+      break;
+    case "7":
+      return "Sat";
+      break;
+  }
+  return null;
+}
+
+String monthToString(String monthNum){
+  switch(monthNum){
+    case "1":
+      return "Jan";
+      break;
+    case "2":
+      return "Fev";
+      break;
+    case "3":
+      return "Mar";
+      break;
+    case "4":
+      return "Apr";
+      break;
+    case "5":
+      return "May";
+      break;
+    case "6":
+      return "Jun";
+      break;
+    case "7":
+      return "Jul";
+      break;
+    case "8":
+      return "Aug";
+      break;
+    case "9":
+      return "Sep";
+      break;
+    case "10":
+      return "Oct";
+      break;
+    case "11":
+      return "Nov";
+      break;
+    case "12":
+      return "Dec";
+      break;
+  }
+  return null;
 }

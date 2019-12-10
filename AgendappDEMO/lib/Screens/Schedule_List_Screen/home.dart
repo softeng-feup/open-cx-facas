@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: TalkPage(talkList: widget.talkList),
           )
         ],
-      )
+      ),
     );
   }
 }

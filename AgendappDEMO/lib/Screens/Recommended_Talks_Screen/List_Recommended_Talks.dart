@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Components/displayTime.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Components/displayContent.dart';
+import 'package:flutter_login_page/Model/ThemeTalk.dart';
+import 'package:flutter_login_page/Model/User.dart';
 import 'package:intl/intl.dart';
 
-class AllTalkPage extends StatefulWidget {
+class RecommendedTalksPage extends StatefulWidget {
   final List<Talk> talkList;
+  final User user;
 
-  const AllTalkPage({Key key, this.talkList}): super(key: key);
+  const RecommendedTalksPage({Key key, this.talkList, this.user}): super(key: key);
 
   @override
-  _AllTalkPageState createState() => _AllTalkPageState();
+  _RecommendedTalksPageState createState() => _RecommendedTalksPageState();
 }
 
-class _AllTalkPageState extends State<AllTalkPage> with TickerProviderStateMixin {
+class _RecommendedTalksPageState extends State<RecommendedTalksPage> with TickerProviderStateMixin {
 
   List<Tab> myTabs = <Tab>[];
   Map<String, List<Talk>> myTalksPerDay = new Map();
@@ -31,6 +34,15 @@ class _AllTalkPageState extends State<AllTalkPage> with TickerProviderStateMixin
     return result != null;
   }
 
+  bool isRecommended(Talk talk, List<ThemeTalk> favouriteThemes){
+
+    if(talk.selected)
+      return false;
+
+    return talk.themes.any((item) => favouriteThemes.contains(item));
+
+  }
+
   @override
   void initState() {
     super.initState();
@@ -39,16 +51,19 @@ class _AllTalkPageState extends State<AllTalkPage> with TickerProviderStateMixin
 
     for(int i = 0; i < widget.talkList.length; i++){
 
-      if(!hasDateMatch(widget.talkList[i].dateInitial, myDates)){
+      if(!hasDateMatch(widget.talkList[i].dateInitial, myDates) && isRecommended(widget.talkList[i], widget.user.preferredThemes)){
 
-        myDates.add(widget.talkList[i].dateInitial);
+          myDates.add(widget.talkList[i].dateInitial);
 
-        String newDate = new DateFormat("dd MMM").format(widget.talkList[i].dateInitial);
-        myTabs.add(Tab(text: newDate));
+          String newDate = new DateFormat("dd MMM").format(
+              widget.talkList[i].dateInitial);
+          myTabs.add(Tab(text: newDate));
 
 
-        var listOfTalks = widget.talkList.where((talk) => (talk.dateInitial.day == widget.talkList[i].dateInitial.day && talk.dateInitial.month == widget.talkList[i].dateInitial.month ));
-        myTalksPerDay[newDate] = listOfTalks.toList();
+          var listOfTalks = widget.talkList.where((talk) =>
+          (talk.dateInitial.day == widget.talkList[i].dateInitial.day &&
+              talk.dateInitial.month == widget.talkList[i].dateInitial.month && isRecommended(talk, widget.user.preferredThemes)));
+          myTalksPerDay[newDate] = listOfTalks.toList();
       }
 
     }
@@ -121,3 +136,6 @@ class _AllTalkPageState extends State<AllTalkPage> with TickerProviderStateMixin
     );
   }
 }
+
+
+
