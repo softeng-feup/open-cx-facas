@@ -28,6 +28,42 @@ class MySchedulePageState extends State<MySchedulePage>   {
     "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM"
   ];
 
+  List<String> createIntervals(int firstHour, int firstMinutes, int lastHour, int lastMinutes) {
+    String firstTime = firstHour.toString().padLeft(2,'0')  + ":" + firstMinutes.toString().padLeft(2,'0') ;
+    String lastTime = lastHour.toString().padLeft(2,'0')  + ":" + lastMinutes.toString().padLeft(2,'0') ;
+    int differenceHours = lastHour-firstHour;
+    int differenceBlocks = differenceHours * 2;
+    List<String> finalList = new List();
+    int currentHour = firstHour;
+    int currentMinutes = firstMinutes;
+    finalList.add(firstTime);
+
+    // print(finalList[0]);
+
+
+    if(firstMinutes != 0)
+      differenceBlocks -= 1;
+
+    if(lastMinutes != 0)
+      differenceBlocks += 1;
+
+    for(int i = 1; i < differenceBlocks; i ++) {
+      currentMinutes += 30;
+      if(currentMinutes == 60){
+        currentHour ++;
+        currentMinutes = 0;
+      }
+
+      finalList.add(currentHour.toString().padLeft(2,'0') + ":" + currentMinutes.toString().padRight(2,'0'));
+      print(finalList[i]);
+    }
+    finalList.add(lastTime);
+    // print(finalList[differenceBlocks]);
+
+
+    return finalList;
+  }
+
   @override
   void initState() {
 
@@ -344,6 +380,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
 
   @override
   Widget build(BuildContext context) {
+    // List<String> teste = createIntervals(8, 0, 18, 0);
     return Container(
       height: MediaQuery.of(context).size.height * 0.92,
       child: Row(

@@ -127,7 +127,7 @@ class _MenuPageState extends State<MenuPage> {
       floatingActionButton: Visibility(
         visible: _isVisible,
         child: FloatingActionButton(
-            mini: true,
+            mini: false,
             backgroundColor: Color(0xFF28316C),
             child: sheduleIcon,
             onPressed: () {
