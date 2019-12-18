@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
 import 'package:flutter_login_page/Screens/Talk%20Screen/talkScreen.dart';
+import 'package:intl/intl.dart';
 
 class MySchedulePage extends StatefulWidget {
   final List<Talk> talkList;
@@ -93,77 +94,6 @@ class MySchedulePageState extends State<MySchedulePage>   {
     }
   }
 
-  String convertWeekDay(int day){
-    switch (day) {
-      case 1:
-        return "MON";
-        break;
-      case 2:
-        return "TUE";
-        break;
-      case 3:
-        return "WED";
-        break;
-      case 4:
-        return "THU";
-        break;
-      case 5:
-        return "FRI";
-        break;
-      case 6:
-        return "SUN";
-        break;
-      case 7:
-        return "SAT";
-        break;
-      default:
-        return "nada";
-    }
-  }
-
-  String convertMonth(int month){
-    switch (month) {
-      case 1:
-        return "JAN";
-        break;
-      case 2:
-        return "FEB";
-        break;
-      case 3:
-        return "MAR";
-        break;
-      case 4:
-        return "APR";
-        break;
-      case 5:
-        return "MAY";
-        break;
-      case 6:
-        return "JUN";
-        break;
-      case 7:
-        return "JUL";
-        break;
-      case 8:
-        return "AUG";
-        break;
-      case 9:
-        return "SET";
-        break;
-      case 10:
-        return "OCT";
-        break;
-      case 11:
-        return "NOV";
-        break;
-      case 12:
-        return "DEC";
-        break;
-      default:
-        return "nada";
-    }
-  }
-
 // Usado para facilitar a colocaçao dos blocos na tabela
   void convertToBlocks(DateTime initTime, DateTime finalTime){
     firstBlock = ((initTime.hour-8)*2 + (initTime.minute)/30).round();
@@ -179,7 +109,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
           children: <Widget>[
             Container(
               color: backColor.withOpacity(0),
-              height: MediaQuery.of(context).size.height * blockSize * (firstBlock-finalBlockBefore),                              
+              height: MediaQuery.of(context).size.height * blockSize * (firstBlock-finalBlockBefore),
               width: MediaQuery.of(context).size.width,
             ),
             GestureDetector(
@@ -243,7 +173,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                convertWeekDay(daysList[i].weekday),
+                DateFormat('EE').format(daysList[i]),
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF444444),
@@ -251,7 +181,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
                 ),
               ),
               Text(
-                daysList[i].day.toString() + convertMonth(daysList[i].month),
+                DateFormat('dMMM').format(daysList[i]),
                 style: TextStyle(
                     color: Color(0xFF666666),
                     fontSize: 13
