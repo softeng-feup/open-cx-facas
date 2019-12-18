@@ -23,10 +23,11 @@ class MySchedulePageState extends State<MySchedulePage>   {
   List<DateTime> daysList = [new DateTime(2019, 12, 8, 8, 0), new DateTime(2019, 12, 9, 8, 0),new DateTime(2019, 12, 10, 8, 0),new DateTime(2019, 12, 11, 8, 0),new DateTime(2019, 12, 12, 8, 0),new DateTime(2019, 12, 13, 8, 0)];
   List<ScrollController> controllers = new List<ScrollController>();
 
-  final List<String> timeInterval = [
-    "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 AM", "12:30 AM",
-    "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM"
-  ];
+  // final List<String> timeInterval = [
+  //   "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 AM", "12:30 AM",
+  //   "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM"
+  // ];
+  List<String> timeInterval = new List<String>();
 
   List<String> createIntervals(int firstHour, int firstMinutes, int lastHour, int lastMinutes) {
     String firstTime = firstHour.toString().padLeft(2,'0')  + ":" + firstMinutes.toString().padLeft(2,'0') ;
@@ -380,7 +381,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
 
   @override
   Widget build(BuildContext context) {
-    // List<String> teste = createIntervals(8, 0, 18, 0);
+    timeInterval = createIntervals(8, 0, 18, 0);
     return Container(
       height: MediaQuery.of(context).size.height * 0.92,
       child: Row(
