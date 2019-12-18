@@ -44,7 +44,112 @@ TO DO
 
 ### Use case diagram 
 
-TO DO: CHECK IF IT CORRECT AND ADD THE DESCRIPTIONS, ETC.
+![Use case diagram](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20USE%20CASE.png)
+
+#### View Schedule:
+* **Actor:** Attendee (the conference staff can also use the app like a normal user).
+* **Description:** The attendee can view his personalise schedule.
+* **Preconditions:** The attendee must be logged in.
+* **Postconditions:** The are none.
+* **Normal Flow:**
+  * Actor selects the option to view the schedule.
+  * Actor views his personalize schedule.
+  * Actor returns to the home page.
+  
+#### Edit Schedule:
+* **Actor:** Attendee (the conference staff can also use the app like a normal user).
+* **Description:** The attendee can edit his personalise schedule.
+* **Preconditions:** The attendee must be logged in.
+* **Postconditions:** The are none.
+* **Normal Flow:**
+  * Actor selects the option to all the talks.
+  * Actor views all the talks.
+  * Actor selects or unselects one or several talks.
+  * Actor returns to the home page.
+* **Alternate flow:**
+  * Actor selects the option to view his schedule.
+  * Actor views his personalize schedule.
+  * Actor unselects one or several talks.
+  * Actor returns to the home page.
+  
+#### View Talk Info:
+* **Actor:** Attendee (the conference staff can also use the app like a normal user).
+* **Description:** The attendee can view the info of a talk.
+* **Preconditions:** The attendee must be logged in.
+* **Postconditions:** The are none.
+* **Normal Flow:**
+  * Actor selects the option to view the schedule or to view all talks.
+  * Actor views his personalize schedule or all talks.
+  * Actor taps a talk block.
+  * Actor views a Talk Info.
+  * Actor returns to the home page.
+  
+#### View Alls Talks:
+* **Actor:** Attendee (the conference staff can also use the app like a normal user).
+* **Description:** The attendee can view all the talks avaiable at the conference.
+* **Preconditions:** The attendee must be logged in.
+* **Postconditions:** The are none.
+* **Normal Flow:**
+  * Actor selects the option to all the talks.
+  * Actor views all the talks.
+  * Actor returns to the home page.
+  
+#### Select/Edit Interests:
+* **Actor:** Attendee (the conference staff can also use the app like a normal user).
+* **Description:** The attendee select or edit his interests.
+* **Preconditions:** The attendee must be logged in.
+* **Postconditions:** The are none.
+* **Normal Flow:**
+  * Actor selects the option to see his personal page.
+  * Actor taps edit in the section 'My Interests'.
+  * Actor selects or unselects interests.
+  * Actor returns to the home page.
+  
+#### View Recommended Talks:
+* **Actor:** Attendee (the conference staff can also use the app like a normal user).
+* **Description:** The attendee can view his Recommended Talks.
+* **Preconditions:** The attendee must be logged in and have interests selected.
+* **Postconditions:** The are none.
+* **Normal Flow:**
+  * Actor selects the option to view recommended talks.
+  * Actor views his recommended talks.
+  * Actor can select talks to add to his schedule.
+  * Actor returns to the home page.
+  
+#### Add Talk:
+* **Actor:** Conference Staff.
+* **Description:** A member of the conference staff can add a talk to the conference.
+* **Preconditions:** The member of staff should have the permition to add a talk to the conference.
+* **Postconditions:** The new talk will be displayed in the option 'View All Talks'.
+* **Normal Flow:**
+  * Actor selects the option to add a talk to the system.
+  * Actor fill all the information of a talk.
+  * Actor selects the button to add a new talk.
+  * Actor returns to the home page.
+  
+#### Edit Talk:
+* **Actor:** Conference Staff.
+* **Description:** A member of the conference staff can edit a talk of the conference.
+* **Preconditions:** The member of staff should have the permition to edit the talk.
+* **Postconditions:** The attendees that had selected this talk will be notify that its information has been updated.
+* **Normal Flow:**
+  * Actor selects a talk.
+  * Actor selects the option to edit the information of set talk.
+  * Actor edits the information of the talk.
+  * Actor selects the button to confirm the changes make to the information of a talk.
+  * Actor returns to the home page.
+  
+#### Delete Talk:
+* **Actor:** Conference staff.
+* **Description:** A member of the conference can delete a talk of the conference.
+* **Preconditions:** The member of staff should have the permition to delete the talk.
+* **Postconditions:** The attendees that had selected this talk will be notify that the talk has been removed.
+* **Normal Flow:**
+  * Actor selects a talk.
+  * Actor selects the option to remove set talk.
+  * Actor returns to the home page.
+  
+TODO: Not sure if notification should be a use case. 
 
 ### User stories
 
