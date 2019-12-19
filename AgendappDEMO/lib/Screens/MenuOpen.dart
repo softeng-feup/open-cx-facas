@@ -53,6 +53,14 @@ final List<Talk> _talkList = [
       "Learn to win",
       "DJI presents a ground-breaking educational robot that helps to understand science, programming and more through captivating gameplay modes and intelligent features.",
       "Room 106", true,true, [speakers[0]], [allThemes[3]]),
+  new Talk(globals.talkId++,new DateTime(2019, 12, 16, 16, 0), new DateTime(2019, 12, 16, 17, 30),
+      "TEste",
+      "DJI presents a ground-breaking educational robot that helps to understand science, programming and more through captivating gameplay modes and intelligent features.",
+      "Room 106", true,true, [speakers[0]], [allThemes[3]]),
+  new Talk(globals.talkId++,new DateTime(2019, 12, 20, 16, 0), new DateTime(2019, 12, 20, 17, 30),
+      "TEste",
+      "DJI presents a ground-breaking educational robot that helps to understand science, programming and more through captivating gameplay modes and intelligent features.",
+      "Room 106", true,true, [speakers[0]], [allThemes[3]]),
 ];
 
 

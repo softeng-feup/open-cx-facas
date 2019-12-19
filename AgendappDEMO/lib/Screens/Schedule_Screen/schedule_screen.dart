@@ -18,17 +18,29 @@ class MySchedulePageState extends State<MySchedulePage>   {
   int finalBlock = 0;
   int numBlocks = 0;
   double blockSize = 0.04;
-  ScrollController _controller1;
-  ScrollController _controller2;
 
-  List<DateTime> daysList = [new DateTime(2019, 12, 8, 8, 0), new DateTime(2019, 12, 9, 8, 0),new DateTime(2019, 12, 10, 8, 0),new DateTime(2019, 12, 11, 8, 0),new DateTime(2019, 12, 12, 8, 0),new DateTime(2019, 12, 13, 8, 0)];
+  List<DateTime> daysList = new List<DateTime>();
   List<ScrollController> controllers = new List<ScrollController>();
-
-  // final List<String> timeInterval = [
-  //   "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 AM", "12:30 AM",
-  //   "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM"
-  // ];
   List<String> timeInterval = new List<String>();
+  double lastOffSet = 0;
+
+  List<DateTime> createDays(List<Talk> talks){
+
+    List<DateTime> dates = new List<DateTime>();
+
+    for(int i = 0; i < talks.length; i++)
+    {
+
+      DateTime newDate = DateTime(talks[i].dateInitial.year, talks[i].dateInitial.month, talks[i].dateInitial.day);
+
+      if (!dates.contains(newDate))
+      {
+        dates.add(newDate);
+      }
+    }
+
+    return dates;
+  }
 
   List<String> createIntervals(int firstHour, int firstMinutes, int lastHour, int lastMinutes) {
     String firstTime = firstHour.toString().padLeft(2,'0')  + ":" + firstMinutes.toString().padLeft(2,'0') ;
@@ -39,8 +51,6 @@ class MySchedulePageState extends State<MySchedulePage>   {
     int currentHour = firstHour;
     int currentMinutes = firstMinutes;
     finalList.add(firstTime);
-
-    // print(finalList[0]);
 
 
     if(firstMinutes != 0)
@@ -57,11 +67,8 @@ class MySchedulePageState extends State<MySchedulePage>   {
       }
 
       finalList.add(currentHour.toString().padLeft(2,'0') + ":" + currentMinutes.toString().padRight(2,'0'));
-      print(finalList[i]);
     }
     finalList.add(lastTime);
-    // print(finalList[differenceBlocks]);
-
 
     return finalList;
   }
@@ -69,29 +76,11 @@ class MySchedulePageState extends State<MySchedulePage>   {
   @override
   void initState() {
 
+    daysList = createDays(widget.talkList);
+    timeInterval = createIntervals(8, 0, 18, 0);
     super.initState();
-    createControllers();
-    _controller1 = ScrollController();
-    _controller1.addListener(listener1);
-    _controller2 = ScrollController();
-    _controller2.addListener(listener2);
-  }
 
-  void listener1() {
-    for(int i = 0; i < controllers.length; i++){
-      controllers[i].jumpTo(_controller1.offset);
-    }
-  }
 
-  void listener2() {
-    _controller1.jumpTo(_controller2.offset);
-  }
-
-  void createControllers() {
-    for(int i = 0; i < daysList.length; i++){
-      controllers.add(new ScrollController());
-      controllers[i].addListener(listener1);
-    }
   }
 
 // Usado para facilitar a colocaçao dos blocos na tabela
@@ -104,19 +93,20 @@ class MySchedulePageState extends State<MySchedulePage>   {
   Widget individualTalkBlock(int i, int j, Color backColor, Color blockColor){
     int finalBlockBefore = finalBlock;
     convertToBlocks(widget.talkList[j].dateInitial, widget.talkList[j].dateFinal);
-    return Container(
-        child: Column(
+    return Column(
           children: <Widget>[
             Container(
-              color: backColor.withOpacity(0),
+              color: null,
               height: MediaQuery.of(context).size.height * blockSize * (firstBlock-finalBlockBefore),
               width: MediaQuery.of(context).size.width,
             ),
             GestureDetector(
+              behavior: HitTestBehavior.translucent,
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+                print("AQUI");
+                /*Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context) {
                   return new TalkScreen(talk: widget.talkList[j]);
-                }));
+                }));*/
               },
               child: Container(
                 color: widget.talkList[j].getColor().withOpacity(0.5),
@@ -140,8 +130,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
               ),
             )
           ],
-        )
-    );
+        );
   }
 
   Widget individualTimeBlock(int i){
@@ -202,16 +191,11 @@ class MySchedulePageState extends State<MySchedulePage>   {
       height: MediaQuery.of(context).size.height * 0.7,
       color: color,
       child: ListView(
-        scrollDirection: Axis.vertical,
-        controller: controllers[i],
         children: <Widget>[
           for(int j = 0; j < widget.talkList.length; j++)
             if(daysList[i].day == widget.talkList[j].dateInitial.day && widget.talkList[j].selected)
               individualTalkBlock(i, j, color, Color.fromARGB(255,247,220,222)),
-          Container(
-            color: Colors.black.withOpacity(0),
-            height:MediaQuery.of(context).size.height * blockSize * (21-finalBlock),
-          ),
+
         ],
       ),
     );
@@ -230,7 +214,6 @@ class MySchedulePageState extends State<MySchedulePage>   {
             height: MediaQuery.of(context).size.height * 0.7,
             color: Colors.white,
             child: ListView(
-              controller: _controller1,
               scrollDirection: Axis.vertical,
               children: <Widget>[
                 for(int i = 0; i < timeInterval.length; i++)
@@ -257,25 +240,8 @@ class MySchedulePageState extends State<MySchedulePage>   {
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               for(int i = 0 ; i < daysList.length ; i ++)
-               dayContainer(i),
+                dayContainer(i),
             ],
-          ),
-         Container(
-           child: ListView(
-            controller: _controller2,
-            scrollDirection: Axis.vertical,
-            children: <Widget>[
-               Container(
-                 color: Colors.blue.withOpacity(0),
-                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * blockSize * 21,
-               ),
-            ],
-          ),
-            margin: EdgeInsets.fromLTRB(0, 55, 0, 0),
-            color: Colors.black.withOpacity(0),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
           ),
         ],
       ),
@@ -311,7 +277,6 @@ class MySchedulePageState extends State<MySchedulePage>   {
 
   @override
   Widget build(BuildContext context) {
-    timeInterval = createIntervals(8, 0, 18, 0);
     return Container(
       height: MediaQuery.of(context).size.height * 0.92,
       child: Row(
