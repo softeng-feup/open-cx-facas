@@ -7,7 +7,7 @@ At Agendapp our vision is to help conference attendees better manage the lecture
 
 ## Documentation
 
-Check out all documentation [here](https://github.com/softeng-feup/open-cx-facas/edit/master/docs/Development-Report.md)!
+Check out all documentation [here](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/Development-Report.md)!
 
 ---
 
