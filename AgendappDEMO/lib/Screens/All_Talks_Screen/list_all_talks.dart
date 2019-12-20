@@ -109,6 +109,7 @@ class _AllTalkPageState extends State<AllTalkPage> with TickerProviderStateMixin
     return Container(
       padding: const EdgeInsets.only(right: 10.0),
       child: new Checkbox(
+        key: Key('Checkbox'),
         value: talk.selected,
         activeColor: new Color(0xFF283593),
         onChanged: (val) {
