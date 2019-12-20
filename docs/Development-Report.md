@@ -269,4 +269,4 @@ For the purpose of ESOF, we will use a very simple approach, just to manage feat
 
 ## Project management
 
-To plan and manage our project we used [trello](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
+To plan and manage our project we used [*Trello*](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
