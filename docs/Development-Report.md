@@ -4,21 +4,30 @@ Welcome to the documentation pages of the AgendApp of [**openCX**](https://githu
 
 You can find here detailed about the AgendApp, hereby mentioned as module, from a high-level vision to low-level implementation decisions: 
 
-* [Business modeling](#Product-Vision)
-  * [Product Vision](#Product-Vision)
-  * [Elevator Pitch](#Elevator-Pitch)
-* [Requirements](#Requirements)
-  * [Use Case Diagram](#Use-case-diagram)
-  * [User stories](#User-stories)
-  * [Domain model](#Domain-model)
-* [Architecture and Design](#Architecture-and-Design)
-  * [Logical architecture](#Logical-architecture)
-  * [Physical architecture](#Physical-architecture)
-  * [Prototype](#Prototype)
-* [Implementation](#Implementation)
-* [Test](#Test)
-* [Configuration and change management](#Configuration-and-change-management)
-* [Project management](#Project-management)
+- [openCX-AgendApp Development Report](#opencx-agendapp-development-report)
+  - [Product Vision](#product-vision)
+  - [Elevator Pitch](#elevator-pitch)
+  - [Requirements](#requirements)
+    - [Use case diagram](#use-case-diagram)
+      - [View Schedule:](#view-schedule)
+      - [Edit Schedule:](#edit-schedule)
+      - [View Talk Info:](#view-talk-info)
+      - [View Alls Talks:](#view-alls-talks)
+      - [Select/Edit Interests:](#selectedit-interests)
+      - [View Recommended Talks:](#view-recommended-talks)
+      - [Add Talk:](#add-talk)
+      - [Edit Talk:](#edit-talk)
+      - [Delete Talk:](#delete-talk)
+    - [User stories](#user-stories)
+    - [Domain model](#domain-model)
+  - [Architecture and Design](#architecture-and-design)
+    - [Logical architecture](#logical-architecture)
+    - [Physical architecture](#physical-architecture)
+    - [Prototype](#prototype)
+  - [Implementation](#implementation)
+  - [Test](#test)
+  - [Configuration and change management](#configuration-and-change-management)
+  - [Project management](#project-management)
 
 So far, contributions are exclusively made by the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
 
@@ -259,4 +268,4 @@ For the purpose of ESOF, we will use a very simple approach, just to manage feat
 
 ## Project management
 
-To plan and manage our project we used *Trello*: https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories
+To plan and manage our project we used [trello](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).

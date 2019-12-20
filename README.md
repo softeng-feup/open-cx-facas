@@ -17,4 +17,4 @@ Please contact us!
 
 Thank you!
 
-Filipa Senra, Tiago Miller, Gustavo Magalhães, José Martins.
+Filipa Senra, , Gustavo Magalhães, José Martins, Tiago Miller.
