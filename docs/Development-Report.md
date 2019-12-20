@@ -1,6 +1,6 @@
 # openCX-AgendApp Development Report
 
-Welcome to the documentation pages of the AgendApp of **openCX**!
+Welcome to the documentation pages of the AgendApp of [**openCX**](https://github.com/softeng-feup/open-cx)!
 
 You can find here detailed about the AgendApp, hereby mentioned as module, from a high-level vision to low-level implementation decisions: 
 
