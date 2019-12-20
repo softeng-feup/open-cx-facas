@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_page/Model/Talk.dart';
-import 'package:flutter_login_page/Screens/Talk%20Screen/talkScreen.dart';
 import 'package:intl/intl.dart';
 
 class MySchedulePage extends StatefulWidget {
@@ -19,10 +18,16 @@ class MySchedulePageState extends State<MySchedulePage>   {
   int numBlocks = 0;
   double blockSize = 0.04;
 
+  ScrollController controller = new ScrollController();
+  ScrollController controllerBlocks = new ScrollController();
+
   List<DateTime> daysList = new List<DateTime>();
-  List<ScrollController> controllers = new List<ScrollController>();
   List<String> timeInterval = new List<String>();
   double lastOffSet = 0;
+
+  void listener(){
+    controllerBlocks.jumpTo(controller.offset);
+  }
 
   List<DateTime> createDays(List<Talk> talks){
 
@@ -78,6 +83,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
 
     daysList = createDays(widget.talkList);
     timeInterval = createIntervals(8, 0, 18, 0);
+    controller.addListener(listener);
     super.initState();
 
 
@@ -155,7 +161,11 @@ class MySchedulePageState extends State<MySchedulePage>   {
 
   Widget dayHeaderContainer(int i, Color color) {
     return Container(
-      child: Row (
+     child: ListView(
+       scrollDirection: Axis.vertical,
+        controller: controller,
+        children: <Widget>[
+        Row (
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Column(
@@ -179,7 +189,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
             ],
           ),
         ],
-      ),
+      )]),
       color: color,
       height: MediaQuery.of(context).size.height * 2*blockSize,
     );
@@ -188,9 +198,10 @@ class MySchedulePageState extends State<MySchedulePage>   {
   Widget blockContainer(int i, Color color) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.84,
       color: color,
       child: ListView(
+        controller: controllerBlocks,
         children: <Widget>[
           for(int j = 0; j < widget.talkList.length; j++)
             if(daysList[i].day == widget.talkList[j].dateInitial.day && widget.talkList[j].selected)
@@ -211,10 +222,8 @@ class MySchedulePageState extends State<MySchedulePage>   {
           ),
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.7,
             color: Colors.white,
-            child: ListView(
-              scrollDirection: Axis.vertical,
+            child: Column(
               children: <Widget>[
                 for(int i = 0; i < timeInterval.length; i++)
                 individualTimeBlock(i),
@@ -231,20 +240,24 @@ class MySchedulePageState extends State<MySchedulePage>   {
   }
 
   Widget daysContainer() {
-    return Container(
-      width: MediaQuery.of(context).size.width * (1- 0.15),
-      height: MediaQuery.of(context).size.height,
-      child: Stack(
-        children: <Widget>[
-          ListView(
+    return SingleChildScrollView(
+    child: Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        timeContainer(),
+        Flexible(
+          child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              for(int i = 0 ; i < daysList.length ; i ++)
-                dayContainer(i),
-            ],
+            child: Row(
+              children: <Widget>[
+                for(int i = 0 ; i < daysList.length ; i ++)
+                  dayContainer(i),
+              ],
+            ),
           ),
-        ],
-      ),
+        )
+      ],
+    ),
     );
   }
 
@@ -277,15 +290,6 @@ class MySchedulePageState extends State<MySchedulePage>   {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.92,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          timeContainer(),
-          daysContainer(),
-        ],
-      )
-    );
+    return daysContainer();
   }
 }
