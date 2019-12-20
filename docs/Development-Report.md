@@ -146,8 +146,6 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
   * Actor selects a talk.
   * Actor selects the option to remove set talk.
   * Actor returns to the home page.
-  
-TODO: Not sure if notification should be a use case. 
 
 ### User stories
 
@@ -168,7 +166,7 @@ In trello link above.
 
 ### Domain model
 
-![Domain Model](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%202.png)
+![Domain Model](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20Domain%20Model.jpeg)
 
 ---
 
@@ -180,6 +178,7 @@ TO DO
 
 ### Physical architecture
 TO DO
+![Physical architecture](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/Physical%20architecture.jpeg)
 
 ### Prototype
 
