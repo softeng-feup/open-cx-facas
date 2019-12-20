@@ -40,8 +40,6 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
 
 The main requirements for the AgendApp are for the user to be able see all the lectures a conference has and setting up his personal schedule for set conference. It is also important that the user is able to see the information of each lecture to better set up his schedule. 
 
----
-
 ### Use case diagram 
 
 ![Use case diagram](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20USE%20CASE.png)
@@ -150,7 +148,6 @@ The main requirements for the AgendApp are for the user to be able see all the l
   * Actor selects the option to remove set talk.
   * Actor returns to the home page.
   
----
 
 ### User stories
 
@@ -169,7 +166,6 @@ In trello link above.
 **Value and effort**.
 In trello link above.
 
----
 
 ### Domain model
 
