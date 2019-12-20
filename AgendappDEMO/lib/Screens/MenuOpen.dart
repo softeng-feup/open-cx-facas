@@ -191,6 +191,7 @@ class _MenuPageState extends State<MenuPage> {
         selectedIconTheme: IconThemeData(size: 38, color: Color(0xFF28316C)),
         unselectedIconTheme: IconThemeData(size: 25, color: Color(0x9F28316C)),
         onTap: _onItemTapped,
+        key: Key("MenuBar"),
       ),
     );
   }

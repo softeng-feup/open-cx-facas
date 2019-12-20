@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_page/Screens/Login_Screen/recoverPassword.dart';
 
 import '../MenuOpen.dart';
 import 'signUp.dart';
@@ -155,6 +154,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildButtonContainer() {
     return GestureDetector(
+      key: Key("LoginButton"),
       onTap: () {
         Navigator.of(context)
             .push(MaterialPageRoute<Null>(builder: (BuildContext context) {

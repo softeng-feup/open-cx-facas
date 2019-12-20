@@ -19,6 +19,7 @@ class _MyAllTalksPageState extends State<MyAllTalksPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      key: Key("AllTalksPage"),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
