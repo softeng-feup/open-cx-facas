@@ -157,12 +157,15 @@ The user stories can be acess [here](https://trello.com/invite/b/12KL9wjB/406498
 ![Organization Story Map](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/User%20Map%20Story%20-%20Organization.jpg)
 
 **User interface mockups**.
+
 In trello [link](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
 
 **Acceptance tests**.
+
 In trello [link](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
 
 **Value and effort**.
+
 In trello [link](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
 
 
