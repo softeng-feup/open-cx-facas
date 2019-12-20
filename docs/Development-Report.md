@@ -171,13 +171,19 @@ In trello link above.
 ---
 
 ## Architecture and Design
-TO DO
+
+This section will describe the overall components of the project and their interrelations.
 
 ### Logical architecture
-TO DO
+
+We have decided to structure our code with the MVC(*Model-View-Controller*) design pattern. The model directly manages the data, logic and rules of the application. The view (our Screens) represents the model in a particular format. The controller responds to the user input and performs interactions on the data model objects. 
+We have find it difficult to separate the Controller from the View due to the way flutter is structured.
+![Package Diagram UML](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/package%20diagram%20UML.png)
 
 ### Physical architecture
-TO DO
+
+The AgendApp will be install in the user's smarthphone. The app will request the info from the database from the server each time it loads a page. It will also send requests to the server to alter the database. The user will also received notifications: pushed or schedule. 
+
 ![Physical architecture](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/Physical%20architecture.jpeg)
 
 ### Prototype
