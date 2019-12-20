@@ -196,7 +196,10 @@ We have find it difficult to separate the Controller from the View due to the wa
 
 The AgendApp will be install in the user's smarthphone. The app will request the info from the database from the server each time it loads a page. It will also send requests to the server to alter the database. The user will also received notifications: pushed or schedule. 
 
-TODO: It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
+We opted to use Flutter as the framework for our mobile application for the following reasons:
+ - App runs on both IOS and Android;
+ - Programming language, Dart, is fast, easy to learn and object oriented;
+ - Has high performance.
 
 ![Physical architecture](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/Physical%20architecture.jpeg)
 
