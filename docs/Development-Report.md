@@ -250,10 +250,11 @@ Being our application mainly based on frontend, especially on the hability to pr
 
 Every code incremenent and manipulation was automatically tested when running the application testing every feature. 
 
-Of course we are aware that this aproach can't grant has the best coverage, and it only suceeded because we are building a small project. 
-So in a that case we needed unit tests, mainly for testing loops that display active and recommended talks on the screen,flag changes on the talks when we choose to add or removed them from the schedule to be displayed and also on the notifications that should or shouldnt be active, this tests help us to maintain data integrity.  
+Of course we are aware that this aproach can't grant the best coverage, and it only suceeded because we are building a small project. 
+So in a that case, we needed unit tests, mainly for testing loops that display active and recommended talks on the screen, flag changes on the talks when we choose to add or removed them from the schedule to be displayed and also on the notifications that should or shouldn't be active, this tests help us to maintain data integrity.  
 
-We also have a full list of acceptance tests, one for each user story that can be consulted on [trello](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
+We also have a full list of acceptance tests, one for each user story that can be consulted on [*Trello*](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
+
 There were implented Gherkin tests which check user login, and window change. These tests were implemented to give us some sort of familiarity with this kind of testing type, and to complement our list of acceptance tests.
 
 ---
