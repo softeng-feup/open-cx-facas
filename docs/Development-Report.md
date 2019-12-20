@@ -190,12 +190,27 @@ The AgendApp will be install in the user's smarthphone. The app will request the
 
 We have implemented a vertical prototype, a thin slice of the system. The flowing user stories are present in our prototype:
 
-1. As a conference atendee, I want to be presented with all talks available so that I can add them to my personal schedule.
+1. As a conference atendee, I want to be presented with all talks available so that I can remove a talk I previously added to my schedule.
 2. As a conference atendee, I want to be able to edit my schedule so I can change my mind.
-3. As a conference atendee, I want to be presented with all talks available so that I can remove a talk I previously added to my schedule
-4. As a conference atendee, I want to be able see my personal schedule so that I can have a fast read of how I should organize myself.
-5. As a user, I want to be able to login into the app so that I can get all my personal data saved and accessible trough any device.
+3. As a user, I want to have a bottom navigation bar so that I can easily navigate trough the different menus.
+4. As a conference attendee, I want to be able to create a personal schedule so that I can better organize myself and attend my personal needs.
+5. As a conference attendee, I want to be presented with all talks available so that I can add them to my personal schedule.
+6. As a conference attendee, I want to be able see my personal schedule so that I can have a fast read of how I should organize myself.
+7. As a conference attendee, I want to able to touch a talk block so that I can see the info associated with that talk.
+8. As a conference attendee, I want to be able to see talk info so that can have a fast read of conferences available
+9. As a user, i want to have an account page so that I can manage all my personal information.
+10. As an attendee of a conference, I want to be presented with suggestions of talks I should attend based on my interests and my schedule so I can take the most from the conference.
+11. As a conference atendee, I want to able to update my interested areas so that i can get better recomendations.
+12. As a conference atendee, i want to be able to choose my interested areas so that i can get talk recommendations.
+13. As an attendee of a talk, I want to be notified when a talk I have on my schedule is about to start so that I don't get late.
+14. As a conference atendee I want to be notified if there are any changes relative to a talk I want to attend so that I don't get confused.
 
+We have also implemented the screens (front-end) of the following user-stories:
+1. As a user, I want to be able recover my password in case I forgot it so that I can regain access to my account.
+2. As a user, I want to be able to log off my account so that my session is over on the device that I used.
+3. As a user, I want to be able to register so that I have my own credentials to access the app.
+4. As a user, I want to be able to login into the app so that I can get all my personal data saved and accessible trough any device.
+5. As user, I want to be able to make my profile so that I can be better identified.
 
 ---
 
