@@ -126,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildTextField(String hintText) {
     return TextField(
+      key: Key(hintText),
       style: new TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: hintText,

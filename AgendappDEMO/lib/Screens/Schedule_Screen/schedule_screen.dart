@@ -313,6 +313,7 @@ class MySchedulePageState extends State<MySchedulePage>   {
   Widget build(BuildContext context) {
     timeInterval = createIntervals(8, 0, 18, 0);
     return Container(
+      key: Key("SchedulePage"),
       height: MediaQuery.of(context).size.height * 0.92,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
