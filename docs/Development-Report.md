@@ -28,8 +28,6 @@ Thank you!
 
 Filipa Senra, Tiago Miller, Gustavo Magalhães, José Martins.
 
-**FOR HELP: https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md#Product-Vision**
-
 ## Product Vision
 At Agendapp our vision is to help conference attendees better manage the lectures they want to take part in. Agendapp is an agenda/schedule type application that offers the user the opportunity to create their own personal schedule based on their own interests, helping them create the perfect programme for their needs. Unlike the old way of checking a conference programme, our app gives the user the opportunity to focus only on the lectures he wants as well as sending him notifications when the talk is about to start and the ability of checking each lecture info on the go.
 
@@ -39,10 +37,16 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
 
 ---
 ## Requirements
+TODO: In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
+
+Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
+
+---
 
 ### Use case diagram 
 
 ![Use case diagram](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20USE%20CASE.png)
+
 
 #### View Schedule:
 * **Actor:** Attendee (the conference staff can also use the app like a normal user).
@@ -146,6 +150,8 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
   * Actor selects a talk.
   * Actor selects the option to remove set talk.
   * Actor returns to the home page.
+  
+---
 
 ### User stories
 
@@ -164,6 +170,8 @@ In trello link above.
 **Value and effort**.
 In trello link above.
 
+---
+
 ### Domain model
 
 ![Domain Model](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20Domain%20Model.jpeg)
@@ -174,17 +182,25 @@ In trello link above.
 
 This section will describe the overall components of the project and their interrelations.
 
+---
+
 ### Logical architecture
 
 We have decided to structure our code with the MVC(*Model-View-Controller*) design pattern. The model directly manages the data, logic and rules of the application. The view (our Screens) represents the model in a particular format. The controller responds to the user input and performs interactions on the data model objects. 
 We have find it difficult to separate the Controller from the View due to the way flutter is structured.
 ![Package Diagram UML](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/package%20diagram%20UML.png)
 
+---
+
 ### Physical architecture
 
 The AgendApp will be install in the user's smarthphone. The app will request the info from the database from the server each time it loads a page. It will also send requests to the server to alter the database. The user will also received notifications: pushed or schedule. 
 
+TODO: It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
+
 ![Physical architecture](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/Physical%20architecture.jpeg)
+
+---
 
 ### Prototype
 
@@ -221,6 +237,7 @@ All releases can be found on the [Releases page](https://github.com/softeng-feup
 ---
 ## Test
 
+TODO: 
 There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
 
 In this section it is only expected to include the following:
