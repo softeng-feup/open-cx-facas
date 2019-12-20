@@ -2,7 +2,7 @@
 
 Welcome to the documentation pages of the AgendApp of **openCX**!
 
-You can find here detailed about the AgendApp, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP): 
+You can find here detailed about the AgendApp, hereby mentioned as module, from a high-level vision to low-level implementation decisions: 
 
 * Business modeling 
   * [Product Vision](#Product-Vision)
@@ -28,8 +28,6 @@ Thank you!
 
 Filipa Senra, Tiago Miller, Gustavo Magalhães, José Martins.
 
-**FOR HELP: https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md#Product-Vision**
-
 ## Product Vision
 At Agendapp our vision is to help conference attendees better manage the lectures they want to take part in. Agendapp is an agenda/schedule type application that offers the user the opportunity to create their own personal schedule based on their own interests, helping them create the perfect programme for their needs. Unlike the old way of checking a conference programme, our app gives the user the opportunity to focus only on the lectures he wants as well as sending him notifications when the talk is about to start and the ability of checking each lecture info on the go.
 
@@ -39,10 +37,16 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
 
 ---
 ## Requirements
+TODO: In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
+
+Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
+
+---
 
 ### Use case diagram 
 
 ![Use case diagram](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20USE%20CASE.png)
+
 
 #### View Schedule:
 * **Actor:** Attendee (the conference staff can also use the app like a normal user).
@@ -146,6 +150,8 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
   * Actor selects a talk.
   * Actor selects the option to remove set talk.
   * Actor returns to the home page.
+  
+---
 
 ### User stories
 
@@ -164,6 +170,8 @@ In trello link above.
 **Value and effort**.
 In trello link above.
 
+---
+
 ### Domain model
 
 ![Domain Model](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20Domain%20Model.jpeg)
@@ -171,25 +179,57 @@ In trello link above.
 ---
 
 ## Architecture and Design
-TO DO
+
+This section will describe the overall components of the project and their interrelations.
+
+---
 
 ### Logical architecture
-TO DO
+
+We have decided to structure our code with the MVC(*Model-View-Controller*) design pattern. The model directly manages the data, logic and rules of the application. The view (our Screens) represents the model in a particular format. The controller responds to the user input and performs interactions on the data model objects. 
+We have find it difficult to separate the Controller from the View due to the way flutter is structured.
+![Package Diagram UML](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/package%20diagram%20UML.png)
+
+---
 
 ### Physical architecture
-TO DO
+
+The AgendApp will be install in the user's smarthphone. The app will request the info from the database from the server each time it loads a page. It will also send requests to the server to alter the database. The user will also received notifications: pushed or schedule. 
+
+We opted to use Flutter as the framework for our mobile application for the following reasons:
+ - App runs on both IOS and Android;
+ - Programming language, Dart, is fast, easy to learn and object oriented;
+ - Has high performance.
+
 ![Physical architecture](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/Physical%20architecture.jpeg)
+
+---
 
 ### Prototype
 
 We have implemented a vertical prototype, a thin slice of the system. The flowing user stories are present in our prototype:
 
-1. As a conference atendee, I want to be presented with all talks available so that I can add them to my personal schedule.
+1. As a conference atendee, I want to be presented with all talks available so that I can remove a talk I previously added to my schedule.
 2. As a conference atendee, I want to be able to edit my schedule so I can change my mind.
-3. As a conference atendee, I want to be presented with all talks available so that I can remove a talk I previously added to my schedule
-4. As a conference atendee, I want to be able see my personal schedule so that I can have a fast read of how I should organize myself.
-5. As a user, I want to be able to login into the app so that I can get all my personal data saved and accessible trough any device.
+3. As a user, I want to have a bottom navigation bar so that I can easily navigate trough the different menus.
+4. As a conference attendee, I want to be able to create a personal schedule so that I can better organize myself and attend my personal needs.
+5. As a conference attendee, I want to be presented with all talks available so that I can add them to my personal schedule.
+6. As a conference attendee, I want to be able see my personal schedule so that I can have a fast read of how I should organize myself.
+7. As a conference attendee, I want to able to touch a talk block so that I can see the info associated with that talk.
+8. As a conference attendee, I want to be able to see talk info so that can have a fast read of conferences available
+9. As a user, i want to have an account page so that I can manage all my personal information.
+10. As an attendee of a conference, I want to be presented with suggestions of talks I should attend based on my interests and my schedule so I can take the most from the conference.
+11. As a conference atendee, I want to able to update my interested areas so that i can get better recomendations.
+12. As a conference atendee, i want to be able to choose my interested areas so that i can get talk recommendations.
+13. As an attendee of a talk, I want to be notified when a talk I have on my schedule is about to start so that I don't get late.
+14. As a conference atendee I want to be notified if there are any changes relative to a talk I want to attend so that I don't get confused.
 
+We have also implemented the screens (front-end) of the following user-stories:
+1. As a user, I want to be able recover my password in case I forgot it so that I can regain access to my account.
+2. As a user, I want to be able to log off my account so that my session is over on the device that I used.
+3. As a user, I want to be able to register so that I have my own credentials to access the app.
+4. As a user, I want to be able to login into the app so that I can get all my personal data saved and accessible trough any device.
+5. As user, I want to be able to make my profile so that I can be better identified.
 
 ---
 
@@ -200,6 +240,7 @@ All releases can be found on the [Releases page](https://github.com/softeng-feup
 ---
 ## Test
 
+TODO: 
 There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
 
 In this section it is only expected to include the following:
