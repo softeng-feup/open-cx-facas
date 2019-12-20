@@ -151,17 +151,20 @@ TODO: Not sure if notification should be a use case.
 
 ### User stories
 
-User story map can be accesed here:
-https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories
+The user stories can be acess [here](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
+
+**User Stories Map**
+![User Story Map](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/User%20Map%20Story%20-%20User.jpg)
+![Organization Story Map](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/User%20Map%20Story%20-%20Organization.jpg)
 
 **User interface mockups**.
-In trello link above (check the Description).
+In trello link above.
 
 **Acceptance tests**.
-In trello link above (check the Description).
+In trello link above.
 
 **Value and effort**.
-In trello link above (check the tags).
+In trello link above.
 
 ### Domain model
 
@@ -219,7 +222,3 @@ For the purpose of ESOF, we will use a very simple approach, just to manage feat
 ## Project management
 
 To plan and manage our project we used *Trello*: https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories
-
-
-
-
