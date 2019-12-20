@@ -151,7 +151,7 @@ TODO: Not sure if notification should be a use case.
 
 ### User stories
 
-User storie map can be accesed here:
+User story map can be accesed here:
 https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories
 
 **User interface mockups**.
@@ -218,9 +218,7 @@ For the purpose of ESOF, we will use a very simple approach, just to manage feat
 
 ## Project management
 
-Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
-
-In that regard, our team adopted [Trello](https://trello.com) as their management tool since it has a very intuitive interface and is really easy to use. Our team Trello link can be found [here](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
+To plan and manage our project we used *Trello*: https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories
 
 
 
