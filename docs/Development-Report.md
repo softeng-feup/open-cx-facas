@@ -240,14 +240,15 @@ All releases can be found on the [Releases page](https://github.com/softeng-feup
 ---
 ## Test
 
-TODO: 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+Being our application mainly based on frontend, especially on the hability to present the user the most organized schedule possible on the screen, the code could and was easily tested while it was being written. 
 
-In this section it is only expected to include the following:
-* test plan describing the list of features to be tested and the testing methods and tools;
-* test case specifications to verify the functionalities, using unit tests and acceptance tests.
- 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+Every code incremenent and manipulation was automatically tested when running the application testing every feature. 
+
+Of course we are aware that this aproach can't grant has the best coverage, and it only suceeded because we are building a small project. 
+So in a that case we needed unit tests, mainly for testing loops that display active and recommended talks on the screen,flag changes on the talks when we choose to add or removed them from the schedule to be displayed and also on the notifications that should or shouldnt be active, this tests help us to maintain data integrity.  
+
+We also have a full list of acceptance tests, one for each user story that can be consulted on [trello](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
+There were implented Gherkin tests which check user login, and window change. These tests were implemented to give us some sort of familiarity with this kind of testing type, and to complement our list of acceptance tests.
 
 ---
 ## Configuration and change management
