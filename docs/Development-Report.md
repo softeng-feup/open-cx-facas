@@ -38,12 +38,11 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
 ---
 ## Requirements
 
-The main requirements for the AgendApp are for the user to be able see all the lectures a conference has and setting up his personal schedule for set conference. It is also important that the user is able to see the information of each lecture to better set up his schedule. 
+The main requirements for AgendApp are for the user to be able see all the lectures a conference has and setting up his personal schedule for set conference. It is also important that the user is able to see the information of each lecture to better set up his schedule. 
 
 ### Use case diagram 
 
 ![Use case diagram](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20USE%20CASE.png)
-
 
 #### View Schedule:
 * **Actor:** Attendee (the conference staff can also use the app like a normal user).
@@ -61,7 +60,7 @@ The main requirements for the AgendApp are for the user to be able see all the l
 * **Preconditions:** The attendee must be logged in.
 * **Postconditions:** The are none.
 * **Normal Flow:**
-  * Actor selects the option to all the talks.
+  * Actor selects the option to see all the talks.
   * Actor views all the talks.
   * Actor selects or unselects one or several talks.
   * Actor returns to the home page.
@@ -89,7 +88,7 @@ The main requirements for the AgendApp are for the user to be able see all the l
 * **Preconditions:** The attendee must be logged in.
 * **Postconditions:** The are none.
 * **Normal Flow:**
-  * Actor selects the option to all the talks.
+  * Actor selects the option to see all the talks.
   * Actor views all the talks.
   * Actor returns to the home page.
   
@@ -158,13 +157,13 @@ The user stories can be acess [here](https://trello.com/invite/b/12KL9wjB/406498
 ![Organization Story Map](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/User%20Map%20Story%20-%20Organization.jpg)
 
 **User interface mockups**.
-In trello link above.
+In trello [link](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
 
 **Acceptance tests**.
-In trello link above.
+In trello [link](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
 
 **Value and effort**.
-In trello link above.
+In trello [link](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
 
 
 ### Domain model
