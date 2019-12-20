@@ -37,9 +37,8 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
 
 ---
 ## Requirements
-TODO: In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
 
-Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
+The main requirements for the AgendApp are for the user to be able see all the lectures a conference has and setting up his personal schedule for set conference. It is also important that the user is able to see the information of each lecture to better set up his schedule. 
 
 ---
 
