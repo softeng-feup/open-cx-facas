@@ -40,8 +40,6 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
 ---
 ## Requirements
 
-TO DO
-
 ### Use case diagram 
 
 ![Use case diagram](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20USE%20CASE.png)
@@ -194,13 +192,8 @@ We have implemented a vertical prototype, a thin slice of the system. The flowin
 ---
 
 ## Implementation
-During implementation, while not necessary, it 
 
-It might be also useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. 
-
-Since the code should speak by itself, try to keep this section as short and simple as possible.
-
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+All releases can be found on the [Releases page](https://github.com/softeng-feup/open-cx-facas/releases).
 
 ---
 ## Test
@@ -227,15 +220,7 @@ For the purpose of ESOF, we will use a very simple approach, just to manage feat
 
 Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
 
-In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
-
-Example of tools to do this are:
-  * [Trello.com](https://trello.com)
-  * [Github Projects](https://github.com/features/project-management/com)
-  * [Pivotal Tracker](https://www.pivotaltracker.com)
-  * [Jira](https://www.atlassian.com/software/jira)
-
-We recommend to use the simplest tool that can possibly work for the team.
+In that regard, our team adopted [Trello](https://trello.com) as their management tool since it has a very intuitive interface and is really easy to use. Our team Trello link can be found [here](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
 
 
 
