@@ -1,17 +1,17 @@
 # openCX-AgendApp Development Report
 
-Welcome to the documentation pages of the AgendApp of **openCX**!
+Welcome to the documentation pages of the AgendApp of [**openCX**](https://github.com/softeng-feup/open-cx)!
 
 You can find here detailed about the AgendApp, hereby mentioned as module, from a high-level vision to low-level implementation decisions: 
 
-* Business modeling 
+* [Business modeling](#Product-Vision)
   * [Product Vision](#Product-Vision)
   * [Elevator Pitch](#Elevator-Pitch)
-* Requirements
+* [Requirements](#Requirements)
   * [Use Case Diagram](#Use-case-diagram)
   * [User stories](#User-stories)
   * [Domain model](#Domain-model)
-* Architecture and Design
+* [Architecture and Design](#Architecture-and-Design)
   * [Logical architecture](#Logical-architecture)
   * [Physical architecture](#Physical-architecture)
   * [Prototype](#Prototype)
@@ -37,16 +37,12 @@ For the conference attendees who want to have their own custom agenda, Agendapp 
 
 ---
 ## Requirements
-TODO: In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
 
-Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
-
----
+The main requirements for AgendApp are for the user to be able see all the lectures a conference has and setting up his personal schedule for set conference. It is also important that the user is able to see the information of each lecture to better set up his schedule. 
 
 ### Use case diagram 
 
 ![Use case diagram](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/UML%20USE%20CASE.png)
-
 
 #### View Schedule:
 * **Actor:** Attendee (the conference staff can also use the app like a normal user).
@@ -64,7 +60,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 * **Preconditions:** The attendee must be logged in.
 * **Postconditions:** The are none.
 * **Normal Flow:**
-  * Actor selects the option to all the talks.
+  * Actor selects the option to see all the talks.
   * Actor views all the talks.
   * Actor selects or unselects one or several talks.
   * Actor returns to the home page.
@@ -92,7 +88,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 * **Preconditions:** The attendee must be logged in.
 * **Postconditions:** The are none.
 * **Normal Flow:**
-  * Actor selects the option to all the talks.
+  * Actor selects the option to see all the talks.
   * Actor views all the talks.
   * Actor returns to the home page.
   
@@ -151,7 +147,6 @@ Start by contextualizing your module, describing the main concepts, terms, roles
   * Actor selects the option to remove set talk.
   * Actor returns to the home page.
   
----
 
 ### User stories
 
@@ -162,15 +157,17 @@ The user stories can be acess [here](https://trello.com/invite/b/12KL9wjB/406498
 ![Organization Story Map](https://github.com/softeng-feup/open-cx-facas/blob/master/docs/User%20Map%20Story%20-%20Organization.jpg)
 
 **User interface mockups**.
-In trello link above.
+
+In trello [link](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
 
 **Acceptance tests**.
-In trello link above.
+
+In trello [link](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
 
 **Value and effort**.
-In trello link above.
 
----
+In trello [link](https://trello.com/invite/b/12KL9wjB/406498b55294270a6c047feb57417c93/esof-agendapp-user-stories).
+
 
 ### Domain model
 
